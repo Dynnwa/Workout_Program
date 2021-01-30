@@ -1,11 +1,16 @@
-# My Personal Project
+# My Personal Project Proposal
 
-## A subtitle
+## Fitness Program Generator
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+Often times I have difficulties 
+deciding on what kind of exercises to do in the gym. 
+Sometimes I can't decide whether or not to do a certain variation
+or to do another variation when both have their own benefits.
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+I propose a solution to that, with this **incredible** 
+application, the user will have the ability to create 
+their personalized program according to factors such as:
+
+- Muscle group
+- Training Intensity
+- Goals
