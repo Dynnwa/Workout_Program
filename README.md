@@ -17,13 +17,13 @@ their personalized program according to factors such as:
 
 ## User Stories
 
-- As a user I want to be able to, create a custom workout based 
+- I want to be able to, create a custom workout based 
 on my wants
-- As a user I want to be able to, add exercises to a workout 
+- I want to be able to, add exercises to a workout 
 program
-- As a user I want to be able to, remove exercises from a workout 
+- I want to be able to, remove exercises from a workout 
 program
-- As a user I want to be able to, adjust the reps adn sets of
+- I want to be able to, adjust the reps adn sets of
 a program
-- As a user I want to be able to, see all possible exercises for
+- I want to be able to, see all possible exercises for
 a muscle group
