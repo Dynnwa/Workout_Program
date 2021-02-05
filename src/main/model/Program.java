@@ -14,7 +14,7 @@ public class Program {
     // EFFECTS: Exercise e is added to the program if it's not
     // already in the program
     public void addExercise(Exercise e) {
-        if (!contains(e)) {
+        if (!program.contains(e)) {
             program.add(e);
         }
     }
@@ -40,10 +40,10 @@ public class Program {
     public int volumeFormuscle(String muscle) {
         int volume = 0;
         for (int i = 0; i < this.programLength(); i++) {
-            Exercise exercise = program.get(i);
-            if (exercise.getMuscle() == muscle) {
-            volume = volume + exercise.getReps() * exercise.getSets();
+            if (program.get(i).getMuscle() == muscle) {
+             volume = volume + (program.get(i).getReps() * program.get(i).getSets());
             }
+            //return volume;
         }
         return volume;
     }
@@ -74,16 +74,14 @@ public class Program {
         return exercises;
     }
 
-    /*
-    public void replaceExercise(Exercise newexercise, String oldexercise) {
+    public void switchExercise(String exercise) {
         for (int i = 0; i < this.programLength(); i++) {
-            if (program.get(i).getExercise() == oldexercise) {
-                program.get(i).changeSets(newset);
+            if (program.get(i).getExercise() == exercise) {
+                program.get(i).swapOut();
                 break;
             }
         }
     }
-     */
 
     // public void progression(){}
 

@@ -44,7 +44,7 @@ public class Exercise {
         return reps;
     }
 
-    public boolean getIsmachine() {
+    public boolean isMachine() {
         return ismachine;
     }
 
@@ -65,6 +65,17 @@ public class Exercise {
     }
 
     /*
+    MODIFIES: this
+    EFFECTS: changes the exercise to alternative and vis versa, also changes the machine to the opposite
+     */
+    public void swapOut() {
+        String holder = this.getAlternative();
+        this.alternative = this.exercise;
+        this.exercise = holder;
+        this.ismachine = !this.ismachine;
+    }
+
+        /*
     public void doneSet() {
         this.sets = sets--;
     }
@@ -73,12 +84,6 @@ public class Exercise {
         this.reps = reps--;
     }
     */
-
-    public void swapOut() {
-        String holder = this.getAlternative();
-        this.alternative = this.exercise;
-        this.exercise = holder;
-    }
 
     // public void demo(){} // video demonstrations
 
