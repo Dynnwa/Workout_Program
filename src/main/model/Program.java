@@ -41,7 +41,7 @@ public class Program {
         int volume = 0;
         for (int i = 0; i < this.programLength(); i++) {
             if (program.get(i).getMuscle() == muscle) {
-             volume = volume + (program.get(i).getReps() * program.get(i).getSets());
+                volume = volume + (program.get(i).getReps() * program.get(i).getSets());
             }
             //return volume;
         }
@@ -61,6 +61,15 @@ public class Program {
         for (int i = 0; i < this.programLength(); i++) {
             if (program.get(i).getExercise() == exercise) {
                 program.get(i).changeReps(newrep);
+                break;
+            }
+        }
+    }
+
+    public void removeanExercise(String exercise) {
+        for (int i = 0; i < this.programLength(); i++) {
+            if (program.get(i).getExercise() == exercise) {
+                this.removeExercise(program.get(i));
                 break;
             }
         }

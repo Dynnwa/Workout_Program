@@ -1,8 +1,5 @@
 package model;
 
-import model.Program;
-import model.Exercise;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -136,7 +133,7 @@ public class ProgramTest {
     }
 
     @Test
-    public void testchangeReps () {
+    public void testchangeReps() {
         program.addExercise(curls1);
         program.addExercise(curls2); // 10
         program.addExercise(squat1);
