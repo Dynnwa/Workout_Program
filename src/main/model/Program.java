@@ -40,7 +40,7 @@ public class Program {
     public int volumeFormuscle(String muscle) {
         int volume = 0;
         for (int i = 0; i < this.programLength(); i++) {
-            if (program.get(i).getMuscle() == muscle) {
+            if (program.get(i).getMuscle().equals(muscle)) {
                 volume = volume + (program.get(i).getReps() * program.get(i).getSets());
             }
             //return volume;
@@ -50,7 +50,7 @@ public class Program {
 
     public void changeSets(int newset, String exercise) {
         for (int i = 0; i < this.programLength(); i++) {
-            if (program.get(i).getExercise() == exercise) {
+            if (program.get(i).getExercise().equals(exercise)) {
                 program.get(i).changeSets(newset);
                 break;
             }
@@ -59,7 +59,7 @@ public class Program {
 
     public void changeReps(int newrep, String exercise) {
         for (int i = 0; i < this.programLength(); i++) {
-            if (program.get(i).getExercise() == exercise) {
+            if (program.get(i).getExercise().equals(exercise)) {
                 program.get(i).changeReps(newrep);
                 break;
             }
@@ -68,9 +68,8 @@ public class Program {
 
     public void removeanExercise(String exercise) {
         for (int i = 0; i < this.programLength(); i++) {
-            if (program.get(i).getExercise() == exercise) {
+            if (program.get(i).getExercise().equals(exercise)) {
                 this.removeExercise(program.get(i));
-                break;
             }
         }
     }
@@ -85,7 +84,7 @@ public class Program {
 
     public void switchExercise(String exercise) {
         for (int i = 0; i < this.programLength(); i++) {
-            if (program.get(i).getExercise() == exercise) {
+            if (program.get(i).getExercise().equals(exercise)) {
                 program.get(i).swapOut();
                 break;
             }

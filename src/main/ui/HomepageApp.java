@@ -58,8 +58,8 @@ public class HomepageApp {
                 program = getProgram();
             }
             program = adduserexercise(program);
-            program = removeExercise(program);
-            program = changetoAlt(program);
+            program = removeExercise(program); //
+            program = changetoAlt(program); //
             System.out.println("Here is your program!");
             System.out.println(program.printExercises());
         } else {
@@ -74,15 +74,15 @@ public class HomepageApp {
             System.out.println("arms, legs, or abs?");
             String goal = input.next();
 
-            if (goal == "arms") {
+            if (goal.equals("arms")) {
                 program = armprogram;
                 System.out.println(armprogram.printExercises());
                 keepgoing = false;
-            } else if (goal == "legs") {
+            } else if (goal.equals("legs")) {
                 program = legprogram;
                 System.out.println(legprogram.printExercises());
                 keepgoing = false;
-            } else if (goal == "abs") {
+            } else if (goal.equals("abs")) {
                 program = abprogram;
                 System.out.println(abprogram.printExercises());
                 keepgoing = false;
@@ -90,7 +90,6 @@ public class HomepageApp {
                 System.out.println("Choose Again:\n"); // need this to restart
             }
         }
-        System.out.println(program.printExercises());
         return program;
     }
 
@@ -101,7 +100,7 @@ public class HomepageApp {
         Exercise additionexercise;
         //  boolean keepgoing = true;
 
-        while (response == "yes") {
+        while (response.equals("yes")) {
             System.out.println("Add the exercise, a machine alternative, the muscle, sets and reps");
             String exercise = input.next();
             String alternative = input.next();
@@ -122,7 +121,7 @@ public class HomepageApp {
         System.out.println("Yes or No");
         String response = input.next();
 
-        while (response == "yes") {
+        while (response.equals("yes")) {
             System.out.println("Which exercise?");
             String name = input.next();
             currentprogram.removeanExercise(name);
@@ -138,7 +137,7 @@ public class HomepageApp {
         System.out.println("Yes or No");
         String response = input.next();
 
-        while (response == "yes") {
+        while (response.equals("yes")) {
             System.out.println("Which exercise?");
             String name = input.next();
             currentprogram.switchExercise(name);
