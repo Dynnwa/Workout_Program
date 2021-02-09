@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// Program is a list of exercises. Programs can modify an individual exercise in the list with various methods
 public class Program {
     private List<Exercise> program;
 
@@ -37,6 +39,8 @@ public class Program {
         return program.size();
     }
 
+    // effects: calculates teh total amount of volume for a given muscle in the program
+    // this is sets*reps
     public int volumeFormuscle(String muscle) {
         int volume = 0;
         for (int i = 0; i < this.programLength(); i++) {
@@ -48,6 +52,8 @@ public class Program {
         return volume;
     }
 
+    // modifies: this
+    // effects: changes the sets for the given exercise
     public void changeSets(int newset, String exercise) {
         for (int i = 0; i < this.programLength(); i++) {
             if (program.get(i).getExercise().equals(exercise)) {
@@ -57,6 +63,8 @@ public class Program {
         }
     }
 
+    // modifies: this
+    // effects: changes the reps for the given exercise
     public void changeReps(int newrep, String exercise) {
         for (int i = 0; i < this.programLength(); i++) {
             if (program.get(i).getExercise().equals(exercise)) {
@@ -66,6 +74,8 @@ public class Program {
         }
     }
 
+    //modifies: this
+    // effects: removes the exercise from the program
     public void removeanExercise(String exercise) {
         for (int i = 0; i < this.programLength(); i++) {
             if (program.get(i).getExercise().equals(exercise)) {
@@ -74,6 +84,7 @@ public class Program {
         }
     }
 
+    // effects: prints a list of all te exercises in the prorgam
     public List<String> printExercises() {
         List<String> exercises = new ArrayList<>();
         for (int i = 0; i < this.programLength(); i++) {
@@ -82,6 +93,8 @@ public class Program {
         return exercises;
     }
 
+    // modifies: this
+    // effects: chanegs the given exercise to the alternative
     public void switchExercise(String exercise) {
         for (int i = 0; i < this.programLength(); i++) {
             if (program.get(i).getExercise().equals(exercise)) {

@@ -67,6 +67,8 @@ public class HomepageApp {
         }
     }
 
+    // modifies: this
+    // effects: returns a premade program that trains the users input muscle group
     public Program getProgram() {
         Program program = new Program();
         while (keepgoing) {
@@ -93,12 +95,13 @@ public class HomepageApp {
         return program;
     }
 
+    // modies: this
+    // effects: returns the new porgram after user has added their own exercise
     public Program adduserexercise(Program currentporgram) {
         System.out.println("Do you want to add your own exercise?");
         System.out.println("yes or no");
         String response = input.next();
         Exercise additionexercise;
-        //  boolean keepgoing = true;
 
         while (response.equals("yes")) {
             System.out.println("Add the exercise, a machine alternative, the muscle, sets and reps");
@@ -116,14 +119,17 @@ public class HomepageApp {
         return currentporgram;
     }
 
+    // modies: this
+    // effects: returns the new porgram after user has removed the given exercise
     public Program removeExercise(Program currentprogram) {
         System.out.println("Do you want to remove an exercise?");
         System.out.println("Yes or No");
         String response = input.next();
 
         while (response.equals("yes")) {
-            System.out.println("Which exercise?");
-            String name = input.next();
+            System.out.print("Which exercise:");
+            input.nextLine();
+            String name = input.nextLine();
             currentprogram.removeanExercise(name);
             System.out.println("Wanna remove another?");
             response = input.next();
@@ -132,6 +138,8 @@ public class HomepageApp {
         return currentprogram;
     }
 
+    // modifies: this
+    // effects: changes one of the user input to the alternative machine exexrcise
     public Program changetoAlt(Program currentprogram) {
         System.out.println("Do you wanna change any exercises to a machine alternative?");
         System.out.println("Yes or No");
@@ -139,7 +147,8 @@ public class HomepageApp {
 
         while (response.equals("yes")) {
             System.out.println("Which exercise?");
-            String name = input.next();
+            input.nextLine();
+            String name = input.nextLine();
             currentprogram.switchExercise(name);
             System.out.println("Wanna change another?");
             response = input.next();

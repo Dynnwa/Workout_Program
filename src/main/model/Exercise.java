@@ -1,5 +1,8 @@
 package model;
 
+
+// Exercise represents an individual exercise in the program
+// an exercise will be repesented by the name of the exercise, the alternatives, the muscle, the sets and the reps
 public class Exercise {
     private String exercise; // name of exercise
     private String alternative; // name of alternative exercise
@@ -23,27 +26,32 @@ public class Exercise {
         this.ismachine = ismachine;
     }
 
-    // just getter methods
+    // effect: gets the name of the exercise
     public String getExercise() {
         return exercise;
     }
 
+    // effects: get the name of the machine alternative
     public String getAlternative() {
         return alternative;
     }
 
+    // effects: gets the name of the muscle trained
     public String getMuscle() {
         return muscle;
     }
 
+    // effects: gets the amount of sets
     public int getSets() {
         return sets;
     }
 
+    // effects: gets the amount of reps
     public int getReps() {
         return reps;
     }
 
+    // effects: true if it is a machine false othrwise
     public boolean isMachine() {
         return ismachine;
     }
