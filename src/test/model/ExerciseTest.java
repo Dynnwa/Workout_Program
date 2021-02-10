@@ -52,7 +52,7 @@ class ExerciseTest {
     }
 
     @Test
-    public void testchangeSets() {
+    public void testChangeSets() {
         curls1.changeSets(3);
         assertEquals(3, curls1.getSets());
         curls1.changeSets(5);
