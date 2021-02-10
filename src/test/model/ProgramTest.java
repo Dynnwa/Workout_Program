@@ -157,19 +157,17 @@ public class ProgramTest {
     @Test
     public void testSwitchExercise() {
         program.addExercise(curls1); //
-        program.addExercise(curls2);
         program.addExercise(squat1); //
         program.switchExercise("Dumbell squat");
+        program.switchExercise("Barbell squat");
         List<String> exercises = new ArrayList<String>();
         exercises.add("Dumbell curl");
-        exercises.add("Barbell curl");
         exercises.add("Leg press");
 
         assertEquals(exercises, program.printExercises());
 
         List<String> exercises1 = new ArrayList<String>();
         exercises1.add("Dumbell curl");
-        exercises1.add("Barbell curl");
         exercises1.add("Dumbell squat");
         program.switchExercise("Leg press");
         assertEquals(exercises1, program.printExercises());
@@ -179,7 +177,6 @@ public class ProgramTest {
 
     @Test
     public void testchangeSets() {
-        program.addExercise(curls1);
         assertEquals(4, curls2.getSets());
 
         program.addExercise(curls2); // 4
@@ -192,7 +189,6 @@ public class ProgramTest {
 
     @Test
     public void testchangeReps() {
-        program.addExercise(curls1);
         assertEquals(10, curls2.getReps());
 
         program.addExercise(curls2); // 10
