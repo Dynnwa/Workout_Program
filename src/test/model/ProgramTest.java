@@ -166,7 +166,15 @@ public class ProgramTest {
         exercises.add("Leg press");
 
         assertEquals(exercises, program.printExercises());
-        //assertTrue(program.get(2).isMachine);
+
+        List<String> exercises1 = new ArrayList<String>();
+        exercises1.add("Dumbell curl");
+        exercises1.add("Barbell curl");
+        exercises1.add("Dumbell squat");
+        program.switchExercise("Leg press");
+        assertEquals(exercises1, program.printExercises());
+
+
     }
 
     @Test
@@ -177,6 +185,7 @@ public class ProgramTest {
         program.addExercise(curls2); // 4
         program.addExercise(squat1);
         program.changeSets(7, "Barbell curl");
+        program.changeSets(0, "Dumbell curl");
 
         assertEquals(7, curls2.getSets());
     }
@@ -189,6 +198,7 @@ public class ProgramTest {
         program.addExercise(curls2); // 10
         program.addExercise(squat1);
         program.changeReps(6, "Barbell curl");
+        program.changeReps(0, "Dumbell curl");
 
         assertEquals(6, curls2.getReps());
     }

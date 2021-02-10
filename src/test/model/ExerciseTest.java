@@ -65,6 +65,11 @@ class ExerciseTest {
         assertEquals("Cable curl", curls1.getExercise());
         assertEquals("Dumbell curl", curls1.getAlternative());
         assertTrue(curls1.isMachine());
+
+        curls1.swapOut();
+        assertEquals("Cable curl", curls1.getAlternative());
+        assertEquals("Dumbell curl", curls1.getExercise());
+        assertFalse(curls1.isMachine());
     }
 
 
