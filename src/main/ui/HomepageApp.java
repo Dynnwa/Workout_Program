@@ -99,16 +99,21 @@ public class HomepageApp {
     // effects: returns the new porgram after user has added their own exercise
     public Program adduserexercise(Program currentporgram) {
         System.out.println("Do you want to add your own exercise?");
-        System.out.println("yes or no");
         String response = input.next();
         Exercise additionexercise;
 
         while (response.equals("yes")) {
-            System.out.println("Add the exercise, a machine alternative, the muscle, sets and reps");
-            String exercise = input.next();
-            String alternative = input.next();
+            System.out.println("Add the exercise:");
+            input.nextLine();
+            String exercise = input.nextLine();
+            System.out.println("Add the muscle:");
             String muscle = input.next();
+            System.out.println("Add the alternative:");
+            input.nextLine();
+            String alternative = input.nextLine();
+            System.out.println("Add the sets:");
             int sets = input.nextInt();
+            System.out.println("Add the reps:");
             int reps = input.nextInt();
             additionexercise = new Exercise(exercise, alternative, muscle, sets, reps, false);
             currentporgram.addExercise(additionexercise);
@@ -119,7 +124,7 @@ public class HomepageApp {
         return currentporgram;
     }
 
-    // modies: this
+    // modifies: this
     // effects: returns the new porgram after user has removed the given exercise
     public Program removeExercise(Program currentprogram) {
         System.out.println("Do you want to remove an exercise?");
