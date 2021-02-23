@@ -28,3 +28,5 @@ a program
 - I want to be able to, see all possible exercises for
 a muscle group
 - I want to be able to, swap out exercises for an alternative
+- I want to be able to, save my current workout program if I like it
+- I want to be able to, I want to load a previous program that I had
