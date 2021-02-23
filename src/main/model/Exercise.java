@@ -1,9 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Json;
 
 // Exercise represents an individual exercise in the program
 // an exercise will be repesented by the name of the exercise, the alternatives, the muscle, the sets and the reps
-public class Exercise {
+public class Exercise implements Json {
     private String exercise; // name of exercise
     private String alternative; // name of alternative exercise
     private String muscle; // the muscle worked
@@ -83,22 +85,16 @@ public class Exercise {
         this.ismachine = !this.ismachine;
     }
 
-        /*
-    public void doneSet() {
-        this.sets = sets--;
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsoneercise = new JSONObject();
+        jsoneercise.put("exercise", exercise);
+        jsoneercise.put("alternative", alternative);
+        jsoneercise.put("muscle", muscle);
+        jsoneercise.put("sets", sets);
+        jsoneercise.put("reps", reps);
+        jsoneercise.put("Ismachine", ismachine);
+        return jsoneercise;
     }
-
-    public void doneRep() {
-        this.reps = reps--;
-    }
-    */
-
-    // public void demo(){} // video demonstrations
-
-    // public void descriptionExercise(){}
-
-    // public void timer(){} // maybe we see where i go with it
-
-
 
 }

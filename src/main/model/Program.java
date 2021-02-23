@@ -2,10 +2,12 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import org.json.JSONObject;
+import org.json.JSONArray;
+import persistence.Json;
 
 // Program is a list of exercises. Programs can modify an individual exercise in the list with various methods
-public class Program {
+public class Program implements Json {
     private List<Exercise> program;
 
     public Program() {
@@ -104,9 +106,20 @@ public class Program {
         }
     }
 
-    // public void progression(){}
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonprogram = new JSONObject();
+        jsonprogram.put("Exercises", changetoJsonArray());
+        return jsonprogram;
+    }
 
-    // public void currentProgress(){}
+    // Changes exercises in the program to a jason array
+    public JSONArray changetoJsonArray() {
+        JSONArray jsonprogramarray = new JSONArray();
 
-    // public void timer(){} // maybe we see where i go with it
+        for (Exercise e : program) {
+            jsonprogramarray.put(e.toJson());
+        }
+        return jsonprogramarray;
+    }
 }

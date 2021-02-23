@@ -46,7 +46,7 @@ public class HomepageApp {
         System.out.println("\nStart training!");
     }
 
-    // MODIFIES: this
+    // MODIFIES: thissdfsdfdsfs
     // EFFECTS: processes user command
     private void processCommand(String command) {
         Program program = new Program();
