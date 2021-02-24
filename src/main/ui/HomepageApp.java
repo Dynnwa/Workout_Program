@@ -17,6 +17,7 @@ public class HomepageApp {
     private Exercise core;
     private Exercise abs;
     private Scanner input;
+    private Program program = new Program();
     private boolean keepgoing = true;
 
     // EFFECTS: runs the program application
@@ -29,144 +30,116 @@ public class HomepageApp {
     private void runProgram() {
         keepgoing = true;
         String command = null;
-
         init();
-
         while (keepgoing) {
             displayMenu();
             command = input.next();
             command = command.toLowerCase();
 
-            if (command.equals("quit")) {
+            if (command.equals("q")) {
                 keepgoing = false;
             } else {
                 processCommand(command);
             }
         }
+        System.out.println(program.printExercises());
         System.out.println("\nStart training!");
     }
 
-    // MODIFIES: thissdfsdfdsfs
+    // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {
-        Program program = new Program();
-        if (command.equals("start")) {
-            System.out.println("Do you want to start with a pre-made?");
-            System.out.println("yes or no");
-            String response = input.next();
-            if (response.equals("yes")) {
-                program = getProgram();
-            }
-            program = adduserexercise(program);
-            program = removeExercise(program); //
-            program = changetoAlt(program); //
-            System.out.println("Here is your program!");
-            System.out.println(program.printExercises());
+        if (command.equals("p")) {
+            getProgram();
+        } else if (command.equals("a")) {
+            adduserexercise();
+        } else if (command.equals("r")) {
+            removeExercise();
+        } else if (command.equals("s")) {
+            changetoAlt();
         } else {
             System.out.println("Selection not valid...");
         }
+        System.out.println(program.printExercises());
     }
 
     // modifies: this
     // effects: returns a premade program that trains the users input muscle group
-    public Program getProgram() {
-        Program program = new Program();
-        while (keepgoing) {
-            System.out.println("What are your goals?");
-            System.out.println("arms, legs, or abs?");
-            String goal = input.next();
+    public void getProgram() {
+        System.out.println("What are your goals?");
+        System.out.println("arms, legs, or abs?");
+        String goal = input.next();
 
-            if (goal.equals("arms")) {
-                program = armprogram;
-                System.out.println(armprogram.printExercises());
-                keepgoing = false;
-            } else if (goal.equals("legs")) {
-                program = legprogram;
-                System.out.println(legprogram.printExercises());
-                keepgoing = false;
-            } else if (goal.equals("abs")) {
-                program = abprogram;
-                System.out.println(abprogram.printExercises());
-                keepgoing = false;
-            } else {
-                System.out.println("Choose Again:\n"); // need this to restart
-            }
+        if (goal.equals("arms")) {
+            program = armprogram;
+            System.out.println(armprogram.printExercises());
+        } else if (goal.equals("legs")) {
+            program = legprogram;
+            System.out.println(legprogram.printExercises());
+        } else if (goal.equals("abs")) {
+            program = abprogram;
+            System.out.println(abprogram.printExercises());
+        } else {
+            System.out.println("Invalid Selection\n");
         }
-        return program;
+
     }
 
     // modies: this
     // effects: returns the new porgram after user has added their own exercise
-    public Program adduserexercise(Program currentporgram) {
-        System.out.println("Do you want to add your own exercise?");
-        String response = input.next();
+    public void adduserexercise() {
         Exercise additionexercise;
 
-        while (response.equals("yes")) {
-            System.out.println("Add the exercise:");
-            input.nextLine();
-            String exercise = input.nextLine();
-            System.out.println("Add the muscle:");
-            String muscle = input.next();
-            System.out.println("Add the alternative:");
-            input.nextLine();
-            String alternative = input.nextLine();
-            System.out.println("Add the sets:");
-            int sets = input.nextInt();
-            System.out.println("Add the reps:");
-            int reps = input.nextInt();
-            additionexercise = new Exercise(exercise, alternative, muscle, sets, reps, false);
-            currentporgram.addExercise(additionexercise);
-            System.out.println("Wanna add another?"); // how to make a loop
-            response = input.next();
-        }
-        System.out.println(currentporgram.printExercises());
-        return currentporgram;
+        System.out.println("Add the exercise:");
+        input.nextLine();
+        String exercise = input.nextLine();
+        System.out.println("Add the muscle:");
+        String muscle = input.next();
+        System.out.println("Add the alternative:");
+        input.nextLine();
+        String alternative = input.nextLine();
+        System.out.println("Add the sets:");
+        int sets = input.nextInt();
+        System.out.println("Add the reps:");
+        int reps = input.nextInt();
+        additionexercise = new Exercise(exercise, alternative, muscle, sets, reps, false);
+        program.addExercise(additionexercise);
+
+        System.out.println(program.printExercises());
     }
 
     // modifies: this
     // effects: returns the new porgram after user has removed the given exercise
-    public Program removeExercise(Program currentprogram) {
-        System.out.println("Do you want to remove an exercise?");
-        System.out.println("Yes or No");
-        String response = input.next();
+    public void removeExercise() {
+        System.out.print("Which exercise:");
+        input.nextLine();
+        String name = input.nextLine();
+        program.removeanExercise(name);
+        System.out.println("Wanna remove another?");
 
-        while (response.equals("yes")) {
-            System.out.print("Which exercise:");
-            input.nextLine();
-            String name = input.nextLine();
-            currentprogram.removeanExercise(name);
-            System.out.println("Wanna remove another?");
-            response = input.next();
-        }
-        System.out.println(currentprogram.printExercises());
-        return currentprogram;
+        System.out.println(program.printExercises());
     }
 
     // modifies: this
     // effects: changes one of the user input to the alternative machine exexrcise
-    public Program changetoAlt(Program currentprogram) {
-        System.out.println("Do you wanna change any exercises to a machine alternative?");
-        System.out.println("Yes or No");
-        String response = input.next();
+    public void changetoAlt() {
+        System.out.println("Which exercise?");
+        input.nextLine();
+        String name = input.nextLine();
+        program.switchExercise(name);
+        System.out.println("Wanna change another?");
 
-        while (response.equals("yes")) {
-            System.out.println("Which exercise?");
-            input.nextLine();
-            String name = input.nextLine();
-            currentprogram.switchExercise(name);
-            System.out.println("Wanna change another?");
-            response = input.next();
-        }
-        System.out.println(currentprogram.printExercises());
-        return currentprogram;
+        System.out.println(program.printExercises());
     }
 
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
-        System.out.println("\tstart");
-        System.out.println("\tquit");
+        System.out.println("\tp -> start with a pre made program");
+        System.out.println("\ta -> add your own exercise to the program");
+        System.out.println("\tr -> romove and exercise from the program");
+        System.out.println("\ts -> switch and exercise to an alternative");
+        System.out.println("\tq -> quit");
     }
 
     // MODIFIES: this
