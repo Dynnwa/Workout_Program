@@ -2,11 +2,18 @@ package ui;
 
 import model.Exercise;
 import model.Program;
+import org.json.JSONArray;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 //Workout Program
 public class HomepageApp {
+    private static final String JSON_FILE = "./data/program.json";
     private Program armprogram;
     private Program legprogram;
     private Program abprogram;
@@ -19,9 +26,14 @@ public class HomepageApp {
     private Scanner input;
     private Program program = new Program();
     private boolean keepgoing = true;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the program application
-    public HomepageApp() {
+    public HomepageApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_FILE);
+        jsonReader = new JsonReader(JSON_FILE);
         runProgram();
     }
 
@@ -52,15 +64,43 @@ public class HomepageApp {
         if (command.equals("p")) {
             getProgram();
         } else if (command.equals("a")) {
-            adduserexercise();
+            addUserExercise();
         } else if (command.equals("r")) {
             removeExercise();
         } else if (command.equals("s")) {
             changetoAlt();
+        } else if (command.equals("save")) {
+            saveProgram();
+        } else if (command.equals("load")) {
+            loadProgram();
         } else {
             System.out.println("Selection not valid...");
         }
         System.out.println(program.printExercises());
+    }
+
+    // EFFECTS: saves the program to the prorgam.json file
+    // MODELLED AFTER THE JSON PROJECT
+    private void saveProgram() {
+        try {
+            jsonWriter.startWriter();
+            jsonWriter.write(program);
+            jsonWriter.stopWriter();
+            System.out.println("Saved prorgram to " + JSON_FILE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_FILE);
+        }
+    }
+
+    // EFFECTS: loads the old program from the program.json file
+    // MODELLED AFTER THE JSON PROJECT
+    private void loadProgram() {
+        try {
+            program = jsonReader.read();
+            System.out.println("Loaded program from " + JSON_FILE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_FILE);
+        }
     }
 
     // modifies: this
@@ -87,7 +127,7 @@ public class HomepageApp {
 
     // modies: this
     // effects: returns the new porgram after user has added their own exercise
-    public void adduserexercise() {
+    public void addUserExercise() {
         Exercise additionexercise;
 
         System.out.println("Add the exercise:");
@@ -139,6 +179,8 @@ public class HomepageApp {
         System.out.println("\ta -> add your own exercise to the program");
         System.out.println("\tr -> romove and exercise from the program");
         System.out.println("\ts -> switch and exercise to an alternative");
+        System.out.println("\tsave -> save program");
+        System.out.println("\tload -> load previous program");
         System.out.println("\tq -> quit");
     }
 

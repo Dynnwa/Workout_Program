@@ -17,7 +17,7 @@ public class Exercise implements Json {
     EFFECTS: exercisename is the name of the exercise, alternative is the alternative exercise
              sets and reps are the sets and reps
              is machine is whether or not this exercise is a machine exercise TRUE, or a
-             free weight exercise FALSE.
+             free weight exercise FALSE.sdfdsfdsfdsfs
      */
     public Exercise(String exercise, String alternative, String muscle, int sets, int reps, boolean ismachine) {
         this.exercise = exercise;
