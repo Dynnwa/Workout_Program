@@ -43,6 +43,17 @@ public class ProgramTest {
     }
 
     @Test
+    public void testgetExercise() {
+        Program program = new Program();
+
+        program.addExercise(curls1);
+        program.addExercise(curls2);
+
+        assertEquals(curls1, program.getExercise(0));
+        assertEquals(curls2, program.getExercise(1));
+    }
+
+    @Test
     public void testaddExercise() {
         program.addExercise(curls1);
 

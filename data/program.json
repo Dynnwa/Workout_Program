@@ -1,8 +1,18 @@
-{"Exercises": [{
-    "Ismachine": true,
-    "reps": 7,
-    "sets": 9,
-    "muscle": "s",
-    "alternative": "a",
-    "exercise": "d"
-}]}
+{"Exercises": [
+    {
+        "Ismachine": false,
+        "reps": 3,
+        "sets": 3,
+        "muscle": "hamstring",
+        "alternative": "Cable dl",
+        "exercise": "Deadlift"
+    },
+    {
+        "Ismachine": false,
+        "reps": 10,
+        "sets": 3,
+        "muscle": "hamstring",
+        "alternative": "rdl",
+        "exercise": "leg curl"
+    }
+]}

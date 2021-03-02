@@ -177,7 +177,7 @@ public class HomepageApp {
         System.out.println("\nSelect from:");
         System.out.println("\tp -> start with a pre made program");
         System.out.println("\ta -> add your own exercise to the program");
-        System.out.println("\tr -> romove and exercise from the program");
+        System.out.println("\tr -> remove and exercise from the program");
         System.out.println("\ts -> switch and exercise to an alternative");
         System.out.println("\tsave -> save program");
         System.out.println("\tload -> load previous program");

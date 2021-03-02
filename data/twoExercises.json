@@ -1,0 +1,18 @@
+{"Exercises": [
+    {
+        "Ismachine": false,
+        "reps": 8,
+        "sets": 3,
+        "muscle": "bicep",
+        "alternative": "Cable curl",
+        "exercise": "Dumbell curl"
+    },
+    {
+        "Ismachine": false,
+        "reps": 10,
+        "sets": 4,
+        "muscle": "bicep",
+        "alternative": "Band curl",
+        "exercise": "Barbell curl"
+    }
+]}
