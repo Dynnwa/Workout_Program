@@ -40,10 +40,10 @@ public class JSONReader_test extends CheckExercise {
         try {
             Program program = reader.read();
             assertEquals(2, program.programLength());
-            correctExercise("Deadlift", "Cable dl", "hamstring",
-                    3, 3, false, program.getExercise(0));
-            correctExercise("leg curl", "rdl", "hamstring",
-                    3, 10, false, program.getExercise(1));
+            correctExercise("Dumbell curl", "Cable curl", "bicep",
+                    3, 8, false, program.getExercise(0));
+            correctExercise("Barbell curl", "Band curl", "bicep",
+                    4, 10, false, program.getExercise(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

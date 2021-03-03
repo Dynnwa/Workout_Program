@@ -1,18 +1,8 @@
-{"Exercises": [
-    {
-        "Ismachine": false,
-        "reps": 3,
-        "sets": 3,
-        "muscle": "hamstring",
-        "alternative": "Cable dl",
-        "exercise": "Deadlift"
-    },
-    {
-        "Ismachine": false,
-        "reps": 10,
-        "sets": 3,
-        "muscle": "hamstring",
-        "alternative": "rdl",
-        "exercise": "leg curl"
-    }
-]}
+{"Exercises": [{
+    "Ismachine": false,
+    "reps": 15,
+    "sets": 3,
+    "muscle": "hamstrings",
+    "alternative": "leg curl",
+    "exercise": "deadlifts"
+}]}
