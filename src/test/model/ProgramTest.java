@@ -213,5 +213,18 @@ public class ProgramTest {
         assertEquals(6, curls2.getReps());
     }
 
+    @Test
+    public void testToJSON() {
+        program.addExercise(curls1);
+        assertEquals(program.changetoJsonArray().toString(),program.toJson().getJSONArray("Exercises").toString());
+    }
+
+    @Test
+    public void testToJSONArray() {
+        program.addExercise(curls1);
+        program.addExercise(curls2);
+        assertEquals(curls1.toJson().toString(),program.changetoJsonArray().get(0).toString());
+        assertEquals(curls2.toJson().toString(),program.changetoJsonArray().get(1).toString());
+    }
 
 }

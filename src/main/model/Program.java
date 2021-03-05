@@ -112,6 +112,7 @@ public class Program implements Json {
         }
     }
 
+    // EFFECTS: changes a program into a JSONObject modelled after the demo
     @Override
     public JSONObject toJson() {
         JSONObject jsonprogram = new JSONObject();

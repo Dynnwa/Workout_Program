@@ -85,6 +85,7 @@ public class Exercise implements Json {
         this.ismachine = !this.ismachine;
     }
 
+    // EFECTS: changes an exercise to a JSONObject, modelled after the demo
     @Override
     public JSONObject toJson() {
         JSONObject jsoneercise = new JSONObject();

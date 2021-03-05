@@ -83,8 +83,6 @@ class ExerciseTest {
         assertEquals(3,curls1.toJson().getInt("sets"));
         assertEquals(8,curls1.toJson().getInt("reps"));
         assertFalse(curls1.toJson().getBoolean("Ismachine"));
-
-
     }
 
 
