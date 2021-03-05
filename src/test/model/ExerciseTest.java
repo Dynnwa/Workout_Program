@@ -1,6 +1,9 @@
 package model;
 
 import model.Exercise;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import persistence.Json;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,7 +75,17 @@ class ExerciseTest {
         assertFalse(curls1.isMachine());
     }
 
+    @Test
+    public void testToJSON() {
+        assertEquals("Dumbell curl",curls1.toJson().getString("exercise"));
+        assertEquals("Cable curl",curls1.toJson().getString("alternative"));
+        assertEquals("bicep",curls1.toJson().getString("muscle"));
+        assertEquals(3,curls1.toJson().getInt("sets"));
+        assertEquals(8,curls1.toJson().getInt("reps"));
+        assertFalse(curls1.toJson().getBoolean("Ismachine"));
 
+
+    }
 
 
 }
