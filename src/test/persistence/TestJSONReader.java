@@ -1,16 +1,14 @@
 package persistence;
 
-import model.Exercise;
 import model.Program;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 // Test for json reader, modelled after the demo json app
-public class JSONReader_test extends CheckExercise {
+public class TestJSONReader extends TestCheckExercise {
 
     @Test
     void testReaderNonExistentFile() {

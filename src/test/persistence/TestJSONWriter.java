@@ -5,12 +5,11 @@ import model.Program;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 // Test for json writer, modelled after the demo json app
-public class JSONWriter_test extends CheckExercise{
+public class TestJSONWriter extends TestCheckExercise {
 
     @Test
     void testWriterInvalidFile() {
