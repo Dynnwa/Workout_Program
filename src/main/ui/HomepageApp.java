@@ -70,9 +70,9 @@ public class HomepageApp {
         } else if (command.equals("s")) {
             changetoAlt();
         } else if (command.equals("save")) {
-            saveProgram();
+            saveProgram(program);
         } else if (command.equals("load")) {
-            loadProgram();
+            loadProgram(program);
         } else {
             System.out.println("Selection not valid...");
         }
@@ -81,10 +81,10 @@ public class HomepageApp {
 
     // EFFECTS: saves the program to the prorgam.json file
     // MODELLED AFTER THE JSON PROJECT
-    private void saveProgram() {
+    private void saveProgram(Program p) {
         try {
             jsonWriter.startWriter();
-            jsonWriter.write(program);
+            jsonWriter.write(p);
             jsonWriter.stopWriter();
             System.out.println("Saved prorgram to " + JSON_FILE);
         } catch (FileNotFoundException e) {
@@ -94,9 +94,9 @@ public class HomepageApp {
 
     // EFFECTS: loads the old program from the program.json file
     // MODELLED AFTER THE JSON PROJECT
-    private void loadProgram() {
+    private void loadProgram(Program p) {
         try {
-            program = jsonReader.read();
+            p = jsonReader.read();
             System.out.println("Loaded program from " + JSON_FILE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_FILE);

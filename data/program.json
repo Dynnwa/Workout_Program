@@ -1,18 +1,1 @@
-{"Exercises": [
-    {
-        "Ismachine": false,
-        "reps": 15,
-        "sets": 3,
-        "muscle": "hamstrings",
-        "alternative": "leg curl",
-        "exercise": "deadlifts"
-    },
-    {
-        "Ismachine": false,
-        "reps": 8,
-        "sets": 3,
-        "muscle": "quads",
-        "alternative": "leg extension",
-        "exercise": "squats"
-    }
-]}
+{"Exercises": []}

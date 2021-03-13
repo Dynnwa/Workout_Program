@@ -1,6 +1,8 @@
 package ui;
 
 import model.Program;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 import ui.actionwindows.Add;
 import ui.actionwindows.Premade;
 import ui.actionwindows.Remove;
@@ -8,9 +10,12 @@ import ui.actionwindows.Swap;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.*;
 
 public class HomePageGui implements ActionListener {
+    private static final String JSON_FILE = "./data/program.json";
     private static final int framewidth = 420;
     private static final int framelength = framewidth;
     private static final int buttonxdist = 10;
@@ -25,8 +30,10 @@ public class HomePageGui implements ActionListener {
     private JLabel title;
     private JLabel programlabel;
     private Program program;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    public HomePageGui() {
+    public HomePageGui() throws FileNotFoundException {
         initFields();
         initLabel();
         initButtons();
@@ -55,9 +62,9 @@ public class HomePageGui implements ActionListener {
         } else if (e.getSource() == swapbutton) {
             swap();
         } else if (e.getSource() == savebutton) {
-            save();
+            saveProgram(program);
         } else if (e.getSource() == loadbutton) {
-            load();
+            loadProgram(program);
         }
     }
 
@@ -77,10 +84,29 @@ public class HomePageGui implements ActionListener {
         Swap swapwindow = new Swap();
     }
 
-    public void save() {
+    // EFFECTS: saves the program to the prorgam.json file
+    // MODELLED AFTER THE JSON PROJECT
+    private void saveProgram(Program p) {
+        try {
+            jsonWriter.startWriter();
+            jsonWriter.write(p);
+            jsonWriter.stopWriter();
+            System.out.println("Saved prorgram to " + JSON_FILE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_FILE);
+        }
     }
 
-    public void load() {}
+    // EFFECTS: loads the old program from the program.json file
+    // MODELLED AFTER THE JSON PROJECT
+    private void loadProgram(Program p) {
+        try {
+            p = jsonReader.read();
+            System.out.println("Loaded program from " + JSON_FILE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_FILE);
+        }
+    }
 
     public void initLabel() {
         title.setBounds(100,10,200,100);
@@ -110,6 +136,8 @@ public class HomePageGui implements ActionListener {
         title = new JLabel();
         programlabel = new JLabel();
         program = new Program();
+        jsonWriter = new JsonWriter(JSON_FILE);
+        jsonReader = new JsonReader(JSON_FILE);
     }
 
     public void initButtons() {
