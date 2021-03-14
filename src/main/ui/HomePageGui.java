@@ -1,5 +1,6 @@
 package ui;
 
+import model.Exercise;
 import model.Program;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -33,7 +34,8 @@ public class HomePageGui implements ActionListener {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    public HomePageGui() throws FileNotFoundException {
+    public HomePageGui(Program p) throws FileNotFoundException {
+        program = p;
         initFields();
         initLabel();
         initButtons();
@@ -54,13 +56,13 @@ public class HomePageGui implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addbutton) {
-            add();
+            add(program);
         } else if (e.getSource() == removebutton) {
-            remove();
+            remove(this.program);
         } else if (e.getSource() == preMadebutton) {
-            premade();
+            premade(program);
         } else if (e.getSource() == swapbutton) {
-            swap();
+            swap(program);
         } else if (e.getSource() == savebutton) {
             saveProgram(program);
         } else if (e.getSource() == loadbutton) {
@@ -68,20 +70,20 @@ public class HomePageGui implements ActionListener {
         }
     }
 
-    public void add() {
-        Add addwindow = new Add();
+    public void add(Program p) {
+        Add addwindow = new Add(p);
     }
 
-    public void remove() {
-        Remove removewindow = new Remove();
+    public void remove(Program p) {
+        Remove removewindow = new Remove(p);
     }
 
-    public void premade() {
-        Premade premadewindow = new Premade();
+    public void premade(Program p) {
+        Premade premadewindow = new Premade(p);
     }
 
-    public void swap() {
-        Swap swapwindow = new Swap();
+    public void swap(Program p) {
+        Swap swapwindow = new Swap(p);
     }
 
     // EFFECTS: saves the program to the prorgam.json file
@@ -103,20 +105,21 @@ public class HomePageGui implements ActionListener {
         try {
             p = jsonReader.read();
             System.out.println("Loaded program from " + JSON_FILE);
+            new HomePageGui(p);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_FILE);
         }
     }
 
     public void initLabel() {
-        title.setBounds(100,10,200,100);
+        title.setBounds(100,10,200,15);
         title.setFont(new Font("Verdana",Font.PLAIN,15));
         title.setBorder(BorderFactory.createBevelBorder(3));
         title.setOpaque(true);
         title.setHorizontalAlignment(JTextField.CENTER);
         title.setText("Your Current Program");
 
-        programlabel.setBounds(100,50,200,100);
+        programlabel.setBounds(100,50,200,15);
         programlabel.setFont(new Font("Verdana",Font.PLAIN,15));
         programlabel.setBorder(BorderFactory.createBevelBorder(3));
         programlabel.setOpaque(true);
@@ -135,9 +138,10 @@ public class HomePageGui implements ActionListener {
         quitbutton = new JButton("QUIT");
         title = new JLabel();
         programlabel = new JLabel();
-        program = new Program();
         jsonWriter = new JsonWriter(JSON_FILE);
         jsonReader = new JsonReader(JSON_FILE);
+        Exercise e1 = new Exercise("asdf","alt","fdsa",5,5, false);
+        program.addExercise(e1);
     }
 
     public void initButtons() {
@@ -166,6 +170,7 @@ public class HomePageGui implements ActionListener {
         frame.add(loadbutton);
         frame.add(quitbutton);
         frame.add(title);
+        frame.add(programlabel);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(framewidth,framelength);

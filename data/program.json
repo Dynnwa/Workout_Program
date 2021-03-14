@@ -1,1 +1,8 @@
-{"Exercises": []}
+{"Exercises": [{
+    "Ismachine": false,
+    "reps": 5,
+    "sets": 5,
+    "muscle": "fdsa",
+    "alternative": "alternative",
+    "exercise": "asdf"
+}]}

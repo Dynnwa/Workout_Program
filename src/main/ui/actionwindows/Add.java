@@ -1,20 +1,27 @@
 package ui.actionwindows;
 
+import model.Program;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Add implements ActionListener {
-    JFrame frame;
-    JLabel exerciselabel;
-    JLabel musclelabel;
-    JLabel alternativelabel;
-    JLabel setslabel;
-    JLabel repslabel;
-    JButton donebutton;
+    private JFrame frame;
+    private JLabel exerciselabel;
+    private JLabel musclelabel;
+    private JLabel alternativelabel;
+    private JLabel setslabel;
+    private JLabel repslabel;
+    private JButton donebutton;
+    private JTextField exercisetext;
+    private JTextField muscletext;
+    private JTextField alternativetext;
+    private JTextField setstext;
+    private JTextField repstext;
 
-    public Add() {
+    public Add(Program p) {
         initFields();
         initLabel();
         initButton();
@@ -22,23 +29,23 @@ public class Add implements ActionListener {
     }
 
     public void initButton() {
-        donebutton.setBounds(200,375,75,25);
+        donebutton.setBounds(160,300,100,25);
         donebutton.setFont(new Font("Ink Free",Font.PLAIN,10));
         donebutton.setFocusable(false);
         donebutton.addActionListener((ActionListener) this);
     }
 
     public void initLabel() {
-        exerciselabel = createNewlabel("Exercise", 10);
-        musclelabel = createNewlabel("Muscle", 20);
-        alternativelabel = createNewlabel("Alternative", 30);
-        setslabel = createNewlabel("Sets", 40);
-        repslabel = createNewlabel("Reps", 50);
+        exerciselabel = createNewlabel("Exercise", 5);
+        musclelabel = createNewlabel("Muscle", 65);
+        alternativelabel = createNewlabel("Alternative", 125);
+        setslabel = createNewlabel("Sets", 185);
+        repslabel = createNewlabel("Reps", 245);
     }
 
     public JLabel createNewlabel(String text, int ypos) {
         JLabel label = new JLabel();
-        label.setBounds(100,ypos,200,100);
+        label.setBounds(160,ypos,100,15);
         label.setFont(new Font("Verdana",Font.PLAIN,15));
         label.setBorder(BorderFactory.createBevelBorder(3));
         label.setOpaque(true);
@@ -54,10 +61,21 @@ public class Add implements ActionListener {
         frame.add(setslabel);
         frame.add(repslabel);
         frame.add(donebutton);
+        frame.add(exercisetext);
+        frame.add(muscletext);
+        frame.add(alternativetext);
+        frame.add(setstext);
+        frame.add(repstext);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420,420);
         frame.setLayout(null);
         frame.setVisible(true);
+    }
+
+    public JTextField createText(int ypos) {
+        JTextField text = new JTextField();
+        text.setBounds(100,ypos,200,15);
+        return text;
     }
 
     public void initFields() {
@@ -68,6 +86,11 @@ public class Add implements ActionListener {
         setslabel = new JLabel();
         repslabel = new JLabel();
         donebutton = new JButton("Done");
+        exercisetext = createText(30);
+        muscletext = createText(90);
+        alternativetext = createText(145);
+        setstext = createText(210);
+        repstext = createText(270);
     }
 
     @Override

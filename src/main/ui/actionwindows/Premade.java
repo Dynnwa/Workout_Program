@@ -1,18 +1,20 @@
 package ui.actionwindows;
 
+import model.Program;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Premade implements ActionListener {
-    JFrame frame;
-    JLabel questionlabel;
-    JButton armbutton;
-    JButton legbutton;
-    JButton abbutton;
+    private JFrame frame;
+    private JLabel questionlabel;
+    private JButton armbutton;
+    private JButton legbutton;
+    private JButton abbutton;
 
-    public Premade() {
+    public Premade(Program p) {
         initFields();
         initLabel();
         initButton();
@@ -20,17 +22,17 @@ public class Premade implements ActionListener {
     }
 
     public void initButton() {
-        armbutton.setBounds(200,375,75,25);
+        armbutton.setBounds(150,200,100,25);
         armbutton.setFont(new Font("Ink Free",Font.PLAIN,10));
         armbutton.setFocusable(false);
         armbutton.addActionListener((ActionListener) this);
 
-        legbutton.setBounds(200,375,75,25);
+        legbutton.setBounds(150,250,100,25);
         legbutton.setFont(new Font("Ink Free",Font.PLAIN,10));
         legbutton.setFocusable(false);
         legbutton.addActionListener((ActionListener) this);
 
-        abbutton.setBounds(200,375,75,25);
+        abbutton.setBounds(150,300,100,25);
         abbutton.setFont(new Font("Ink Free",Font.PLAIN,10));
         abbutton.setFocusable(false);
         abbutton.addActionListener((ActionListener) this);
