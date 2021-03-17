@@ -1,11 +1,14 @@
 package ui.actionwindows;
 
+import model.Exercise;
 import model.Program;
+import ui.HomePageGui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class Add implements ActionListener {
     private JFrame frame;
@@ -20,12 +23,15 @@ public class Add implements ActionListener {
     private JTextField alternativetext;
     private JTextField setstext;
     private JTextField repstext;
+    private Program program;
 
     public Add(Program p) {
+        this.program = p;
         initFields();
         initLabel();
         initButton();
         initFrame();
+        donebutton.addActionListener(this::actionPerformed);
     }
 
     public void initButton() {
@@ -95,6 +101,21 @@ public class Add implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String exercise = exercisetext.getText();
+        String alt = alternativetext.getText();
+        String muscle = muscletext.getText();
+        String setsstring = setstext.getText();
+        int sets = Integer.parseInt(setsstring);
+        String repsstring = repstext.getText();
+        int reps = Integer.parseInt(repsstring);
+        Exercise addtoprogram = new Exercise(exercise, alt, muscle,sets,reps,false);
+        this.program.addExercise(addtoprogram);
+        frame.dispose();
+        try {
+            new HomePageGui(this.program);
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        }
 
     }
 }

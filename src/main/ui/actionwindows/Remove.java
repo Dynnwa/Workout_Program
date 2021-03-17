@@ -67,20 +67,18 @@ public class Remove implements ActionListener {
         exerciselabel = new JLabel();
         donebutton = new JButton("Done");
         text = new JTextField();
-        text.setBounds(100,125,200,35);
+        text.setBounds(100, 125, 200, 35);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == donebutton) {
-            String exersice = text.getText();
-            this.program.removeanExercise(exersice);
-            try {
-                new HomePageGui(this.program);
-            } catch (FileNotFoundException fileNotFoundException) {
-                fileNotFoundException.printStackTrace();
-            }
-
+        String exersice = text.getText();
+        this.program.removeanExercise(exersice);
+        frame.dispose();
+        try {
+            new HomePageGui(this.program);
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
         }
     }
 }

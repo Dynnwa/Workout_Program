@@ -35,7 +35,7 @@ public class HomePageGui implements ActionListener {
     private JsonReader jsonReader;
 
     public HomePageGui(Program p) throws FileNotFoundException {
-        program = p;
+        this.program = p;
         initFields();
         initLabel();
         initButtons();
@@ -50,40 +50,45 @@ public class HomePageGui implements ActionListener {
         swapbutton.addActionListener(this::actionPerformed);
         savebutton.addActionListener(this::actionPerformed);
         loadbutton.addActionListener(this::actionPerformed);
-        quitbutton.addActionListener(this::actionPerformed);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // System.out.println(e.getActionCommand());
         if (e.getSource() == addbutton) {
-            add(program);
+            add(this.program);
         } else if (e.getSource() == removebutton) {
             remove(this.program);
         } else if (e.getSource() == preMadebutton) {
-            premade(program);
+            premade(this.program);
         } else if (e.getSource() == swapbutton) {
-            swap(program);
+            swap(this.program);
         } else if (e.getSource() == savebutton) {
             saveProgram(program);
         } else if (e.getSource() == loadbutton) {
             loadProgram(program);
         }
+        frame.dispose();
     }
 
     public void add(Program p) {
         Add addwindow = new Add(p);
+        frame.dispose();
     }
 
     public void remove(Program p) {
         Remove removewindow = new Remove(p);
+        frame.dispose();
     }
 
     public void premade(Program p) {
         Premade premadewindow = new Premade(p);
+        frame.dispose();
     }
 
     public void swap(Program p) {
         Swap swapwindow = new Swap(p);
+        frame.dispose();
     }
 
     // EFFECTS: saves the program to the prorgam.json file
@@ -120,7 +125,7 @@ public class HomePageGui implements ActionListener {
         title.setText("Your Current Program");
 
         programlabel.setBounds(100,50,200,15);
-        programlabel.setFont(new Font("Verdana",Font.PLAIN,15));
+        programlabel.setFont(new Font("Verdana",Font.PLAIN,10));
         programlabel.setBorder(BorderFactory.createBevelBorder(3));
         programlabel.setOpaque(true);
         programlabel.setHorizontalAlignment(JTextField.CENTER);
@@ -140,21 +145,19 @@ public class HomePageGui implements ActionListener {
         programlabel = new JLabel();
         jsonWriter = new JsonWriter(JSON_FILE);
         jsonReader = new JsonReader(JSON_FILE);
-        Exercise e1 = new Exercise("asdf","alt","fdsa",5,5, false);
-        program.addExercise(e1);
     }
 
     public void initButtons() {
-        initbutton(preMadebutton,buttonxdist, 25);
-        initbutton(addbutton,buttonxdist,50);
-        initbutton(removebutton,buttonxdist,75);
-        initbutton(swapbutton,buttonxdist,100);
-        initbutton(savebutton,buttonxdist,125);
-        initbutton(loadbutton,buttonxdist,150);
+        initButton(preMadebutton,buttonxdist, 25);
+        initButton(addbutton,buttonxdist,50);
+        initButton(removebutton,buttonxdist,75);
+        initButton(swapbutton,buttonxdist,100);
+        initButton(savebutton,buttonxdist,125);
+        initButton(loadbutton,buttonxdist,150);
         //initbutton(quitbutton,buttonxdist,175);
     }
 
-    public void initbutton(JButton jb, int xpos, int ypos) {
+    public void initButton(JButton jb, int xpos, int ypos) {
         jb.setBounds(xpos,ypos,75,25);
         jb.setFont(new Font("Ink Free",Font.PLAIN,10));
         jb.setFocusable(false);
@@ -177,4 +180,55 @@ public class HomePageGui implements ActionListener {
         frame.setLayout(null);
         frame.setVisible(true);
     }
+
+/*
+    class SwapButtonActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //System.out.println("Count of listeners: " + ((JButton) e.getSource()).getActionListeners().length);
+            Swap swapwindow = new Swap(program);
+        }
+    }
+
+    class AddButtonActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Add addwindow = new Add(program);
+        }
+    }
+
+    class RemoveButtonActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Remove removewindow = new Remove(program);
+        }
+    }
+
+    class PremadeButtonActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Premade premadewindow = new Premade(program);
+        }
+    }
+
+    class SaveButtonActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            saveProgram(program);
+        }
+    }
+
+    class LoadButtonActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            loadProgram(program);
+        }
+    }
+ */
 }

@@ -19,7 +19,7 @@ public class Swap implements ActionListener {
     private Program program;
 
     public Swap(Program p) {
-        program = p;
+        this.program = p;
         initFields();
         initLabel();
         initButton();
@@ -64,19 +64,18 @@ public class Swap implements ActionListener {
         exerciselabel = new JLabel();
         donebutton = new JButton("Done");
         text = new JTextField();
-        text.setBounds(100,125,200,35);
+        text.setBounds(100, 125, 200, 35);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == donebutton) {
-            String exercise = text.getText();
-            program.switchExercise(exercise);
-            try {
-                new HomePageGui(program);
-            } catch (FileNotFoundException fileNotFoundException) {
-                fileNotFoundException.printStackTrace();
-            }
+        String exercise = text.getText();
+        this.program.switchExercise(exercise);
+        frame.dispose();
+        try {
+            new HomePageGui(this.program);
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
         }
 
     }

@@ -1,11 +1,14 @@
 package ui.actionwindows;
 
+import model.Exercise;
 import model.Program;
+import ui.HomePageGui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class Premade implements ActionListener {
     private JFrame frame;
@@ -13,12 +16,21 @@ public class Premade implements ActionListener {
     private JButton armbutton;
     private JButton legbutton;
     private JButton abbutton;
+    private Program program;
+    private Program armprogram;
+    private Program legprogram;
+    private Program abprogram;
 
     public Premade(Program p) {
+        this.program = p;
         initFields();
+        initProgram();
         initLabel();
         initButton();
         initFrame();
+        armbutton.addActionListener(this::actionPerformed);
+        legbutton.addActionListener(this::actionPerformed);
+        abbutton.addActionListener(this::actionPerformed);
     }
 
     public void initButton() {
@@ -72,8 +84,49 @@ public class Premade implements ActionListener {
         abbutton = new JButton("Abs");
     }
 
+    public void initProgram() {
+        Exercise extension = new Exercise("Skullcrusher", "Press down", "tricep",
+                3, 8, false);
+        Exercise curl = new Exercise("Barbell curl", "Band curl", "bicep",
+                4, 10, false);
+        Exercise deadlift = new Exercise("Deadlift", "Cable dl", "hamstring",
+                3, 3, false);
+        Exercise squat = new Exercise("Barbell squat", "Hack squat", "quad",
+                4, 8, false);
+        Exercise core = new Exercise("Leg raise", "Cable hold", "core",
+                3, 8, false);
+        Exercise abs = new Exercise("Situp", "Machine Crunch", "abs",
+                5, 10, false);
+
+        armprogram = new Program();
+        armprogram.addExercise(extension);
+        armprogram.addExercise(curl);
+
+        legprogram = new Program();
+        legprogram.addExercise(deadlift);
+        legprogram.addExercise(squat);
+
+        abprogram = new Program();
+        abprogram.addExercise(core);
+        abprogram.addExercise(abs);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        try {
+            if (e.getSource() == armbutton) {
+                this.program = armprogram;
+            } else if (e.getSource() == legbutton) {
+                this.program = legprogram;
+            } else if (e.getSource() == abbutton) {
+                this.program = abprogram;
+            }
+            frame.dispose();
+            new HomePageGui(this.program);
+            frame.dispose();
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        }
 
     }
 }
