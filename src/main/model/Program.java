@@ -60,6 +60,17 @@ public class Program implements Json {
         return volume;
     }
 
+    // effects: prints a list of all the exercises in the prorgam that works the given muscle
+    public List<String> printExerciseforMuscle(String muscle) {
+        List<String> exercises = new ArrayList<>();
+        for (int i = 0; i < this.programLength(); i++) {
+            if (program.get(i).getMuscle().equals(muscle)) {
+                exercises.add(program.get(i).getExercise());
+            }
+        }
+        return exercises;
+    }
+
     // modifies: this
     // effects: changes the sets for the given exercise
     public void changeSets(int newset, String exercise) {

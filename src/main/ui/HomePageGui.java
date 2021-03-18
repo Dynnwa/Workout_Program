@@ -28,8 +28,12 @@ public class HomePageGui implements ActionListener {
     private JButton savebutton;
     private JButton loadbutton;
     private JButton quitbutton;
+    private JButton done;
+    private JTextField muscletext;
     private JLabel title;
     private JLabel programlabel;
+    private JLabel musclelabel;
+    private JLabel exerciseslabel;
     private Program program;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -39,6 +43,7 @@ public class HomePageGui implements ActionListener {
         initFields();
         initLabel();
         initButtons();
+        initTextfield();
         initFrame();
         clickHomepage(); // Method that actually does stuff
     }
@@ -50,6 +55,7 @@ public class HomePageGui implements ActionListener {
         swapbutton.addActionListener(this::actionPerformed);
         savebutton.addActionListener(this::actionPerformed);
         loadbutton.addActionListener(this::actionPerformed);
+        done.addActionListener(this::actionPerformed);
     }
 
     @Override
@@ -67,26 +73,37 @@ public class HomePageGui implements ActionListener {
             saveProgram(program);
         } else if (e.getSource() == loadbutton) {
             loadProgram(program);
+        } else if (e.getSource() == done) {
+            done();
         }
-        frame.dispose();
+        //frame.dispose();
+    }
+
+    private void done() {
+        String muscle = muscletext.getText();
+        exerciseslabel.setText(this.program.printExerciseforMuscle(muscle).toString());
     }
 
     public void add(Program p) {
+        frame.dispose();
         Add addwindow = new Add(p);
         frame.dispose();
     }
 
     public void remove(Program p) {
+        frame.dispose();
         Remove removewindow = new Remove(p);
         frame.dispose();
     }
 
     public void premade(Program p) {
+        frame.dispose();
         Premade premadewindow = new Premade(p);
         frame.dispose();
     }
 
     public void swap(Program p) {
+        frame.dispose();
         Swap swapwindow = new Swap(p);
         frame.dispose();
     }
@@ -116,6 +133,10 @@ public class HomePageGui implements ActionListener {
         }
     }
 
+    private void initTextfield() {
+        muscletext.setBounds(100,175,150,15);
+    }
+
     public void initLabel() {
         title.setBounds(100,10,200,15);
         title.setFont(new Font("Verdana",Font.PLAIN,15));
@@ -123,13 +144,23 @@ public class HomePageGui implements ActionListener {
         title.setOpaque(true);
         title.setHorizontalAlignment(JTextField.CENTER);
         title.setText("Your Current Program");
-
         programlabel.setBounds(100,50,200,15);
         programlabel.setFont(new Font("Verdana",Font.PLAIN,10));
         programlabel.setBorder(BorderFactory.createBevelBorder(3));
         programlabel.setOpaque(true);
         programlabel.setHorizontalAlignment(JTextField.CENTER);
         programlabel.setText(program.printExercises().toString());
+        musclelabel.setBounds(90,150,300,15);
+        musclelabel.setFont(new Font("Verdana",Font.PLAIN,10));
+        musclelabel.setBorder(BorderFactory.createBevelBorder(3));
+        musclelabel.setOpaque(true);
+        musclelabel.setHorizontalAlignment(JTextField.CENTER);
+        musclelabel.setText("Enter Muscle to show exercises for that muscle");
+        exerciseslabel.setBounds(10,275,200,15);
+        exerciseslabel.setFont(new Font("Verdana",Font.PLAIN,10));
+        exerciseslabel.setBorder(BorderFactory.createBevelBorder(3));
+        exerciseslabel.setOpaque(true);
+        exerciseslabel.setHorizontalAlignment(JTextField.CENTER);
     }
 
     public void initFields() {
@@ -143,6 +174,10 @@ public class HomePageGui implements ActionListener {
         quitbutton = new JButton("QUIT");
         title = new JLabel();
         programlabel = new JLabel();
+        musclelabel = new JLabel();
+        exerciseslabel = new JLabel();
+        muscletext = new JTextField();
+        done = new JButton("Done");
         jsonWriter = new JsonWriter(JSON_FILE);
         jsonReader = new JsonReader(JSON_FILE);
     }
@@ -154,7 +189,10 @@ public class HomePageGui implements ActionListener {
         initButton(swapbutton,buttonxdist,100);
         initButton(savebutton,buttonxdist,125);
         initButton(loadbutton,buttonxdist,150);
-        //initbutton(quitbutton,buttonxdist,175);
+        done.setBounds(100,250,75,25);
+        done.setFont(new Font("Ink Free",Font.PLAIN,10));
+        done.setFocusable(false);
+        done.addActionListener((ActionListener) this);
     }
 
     public void initButton(JButton jb, int xpos, int ypos) {
@@ -174,6 +212,10 @@ public class HomePageGui implements ActionListener {
         frame.add(quitbutton);
         frame.add(title);
         frame.add(programlabel);
+        frame.add(musclelabel);
+        frame.add(exerciseslabel);
+        frame.add(done);
+        frame.add(muscletext);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(framewidth,framelength);

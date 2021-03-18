@@ -120,6 +120,25 @@ public class ProgramTest {
     }
 
     @Test
+    public void testprintMuscle() {
+        List<String> list = new ArrayList<>();
+        assertEquals(list, program.printExerciseforMuscle("quad"));
+        assertEquals(list, program.printExerciseforMuscle("bicep"));
+        program.addExercise(curls1);
+        program.addExercise(curls2);
+        list.add(curls1.getExercise());
+        list.add(curls2.getExercise());
+        assertEquals(list, program.printExerciseforMuscle("bicep"));
+        program.addExercise(squat1);
+        program.addExercise(squat2);
+        list.remove(curls1.getExercise());
+        list.remove(curls2.getExercise());
+        list.add(squat1.getExercise());
+        list.add(squat2.getExercise());
+        assertEquals(list, program.printExerciseforMuscle("quad"));
+    }
+
+    @Test
     public void testPrintlist() {
         program.addExercise(curls1);
         program.addExercise(curls2);

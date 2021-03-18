@@ -1,18 +1,18 @@
 {"Exercises": [
     {
         "Ismachine": false,
-        "reps": 3,
+        "reps": 8,
         "sets": 3,
-        "muscle": "hamstring",
-        "alternative": "Cable dl",
-        "exercise": "Deadlift"
+        "muscle": "tricep",
+        "alternative": "Press down",
+        "exercise": "Skullcrusher"
     },
     {
         "Ismachine": false,
-        "reps": 8,
+        "reps": 10,
         "sets": 4,
-        "muscle": "quad",
-        "alternative": "Hack squat",
-        "exercise": "Barbell squat"
+        "muscle": "bicep",
+        "alternative": "Band curl",
+        "exercise": "Barbell curl"
     }
 ]}
