@@ -72,6 +72,7 @@ public class Remove implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        frame.dispose();
         String exersice = text.getText();
         this.program.removeanExercise(exersice);
         frame.dispose();

@@ -1,6 +1,5 @@
 package ui;
 
-import model.Exercise;
 import model.Program;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -11,8 +10,10 @@ import ui.actionwindows.Swap;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import javax.sound.sampled.*;
 import javax.swing.*;
 
 public class HomePageGui implements ActionListener {
@@ -34,14 +35,20 @@ public class HomePageGui implements ActionListener {
     private JLabel programlabel;
     private JLabel musclelabel;
     private JLabel exerciseslabel;
+    private JLabel arm;
+    private JLabel abs;
+    private JLabel leg;
     private Program program;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+
+
 
     public HomePageGui(Program p) throws FileNotFoundException {
         this.program = p;
         initFields();
         initLabel();
+        initImageLabels();
         initButtons();
         initTextfield();
         initFrame();
@@ -49,18 +56,26 @@ public class HomePageGui implements ActionListener {
     }
 
     public void clickHomepage() {
-        addbutton.addActionListener(this::actionPerformed);
-        removebutton.addActionListener(this::actionPerformed);
-        preMadebutton.addActionListener(this::actionPerformed);
-        swapbutton.addActionListener(this::actionPerformed);
-        savebutton.addActionListener(this::actionPerformed);
-        loadbutton.addActionListener(this::actionPerformed);
-        done.addActionListener(this::actionPerformed);
+        addbutton.addActionListener(this);
+        removebutton.addActionListener(this);
+        preMadebutton.addActionListener(this);
+        swapbutton.addActionListener(this);
+        savebutton.addActionListener(this);
+        loadbutton.addActionListener(this);
+        done.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // System.out.println(e.getActionCommand());
+        try {
+            playSound();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (UnsupportedAudioFileException unsupportedAudioFileException) {
+            unsupportedAudioFileException.printStackTrace();
+        } catch (LineUnavailableException lineUnavailableException) {
+            lineUnavailableException.printStackTrace();
+        }
         if (e.getSource() == addbutton) {
             add(this.program);
         } else if (e.getSource() == removebutton) {
@@ -76,12 +91,21 @@ public class HomePageGui implements ActionListener {
         } else if (e.getSource() == done) {
             done();
         }
-        //frame.dispose();
+    }
+
+    public void playSound() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        File file = new File("./data/button1.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start();
     }
 
     private void done() {
         String muscle = muscletext.getText();
         exerciseslabel.setText(this.program.printExerciseforMuscle(muscle).toString());
+        arm.setVisible(true);
+
     }
 
     public void add(Program p) {
@@ -137,6 +161,16 @@ public class HomePageGui implements ActionListener {
         muscletext.setBounds(100,175,150,15);
     }
 
+    public void initImageLabels() {
+        arm.setBounds(100,300,200,15);
+        arm.setFont(new Font("Verdana",Font.PLAIN,15));
+        arm.setBorder(BorderFactory.createBevelBorder(3));
+        arm.setOpaque(true);
+        arm.setVisible(false);
+        arm.setHorizontalAlignment(JTextField.CENTER);
+        arm.setIcon(new ImageIcon("./data/Arm.jpeg"));
+    }
+
     public void initLabel() {
         title.setBounds(100,10,200,15);
         title.setFont(new Font("Verdana",Font.PLAIN,15));
@@ -176,6 +210,9 @@ public class HomePageGui implements ActionListener {
         programlabel = new JLabel();
         musclelabel = new JLabel();
         exerciseslabel = new JLabel();
+        arm = new JLabel();
+        abs = new JLabel();
+        leg = new JLabel();
         muscletext = new JTextField();
         done = new JButton("Done");
         jsonWriter = new JsonWriter(JSON_FILE);
@@ -216,7 +253,9 @@ public class HomePageGui implements ActionListener {
         frame.add(exerciseslabel);
         frame.add(done);
         frame.add(muscletext);
-
+        frame.add(arm);
+        frame.add(abs);
+        frame.add(leg);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(framewidth,framelength);
         frame.setLayout(null);

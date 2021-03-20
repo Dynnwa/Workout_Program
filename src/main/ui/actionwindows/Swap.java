@@ -69,6 +69,7 @@ public class Swap implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        frame.dispose();
         String exercise = text.getText();
         this.program.switchExercise(exercise);
         frame.dispose();

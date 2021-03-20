@@ -101,6 +101,7 @@ public class Add implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        frame.dispose();
         String exercise = exercisetext.getText();
         String alt = alternativetext.getText();
         String muscle = muscletext.getText();

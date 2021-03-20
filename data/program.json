@@ -1,18 +1,1 @@
-{"Exercises": [
-    {
-        "Ismachine": false,
-        "reps": 8,
-        "sets": 3,
-        "muscle": "tricep",
-        "alternative": "Press down",
-        "exercise": "Skullcrusher"
-    },
-    {
-        "Ismachine": false,
-        "reps": 10,
-        "sets": 4,
-        "muscle": "bicep",
-        "alternative": "Band curl",
-        "exercise": "Barbell curl"
-    }
-]}
+{"Exercises": []}

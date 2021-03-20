@@ -114,6 +114,7 @@ public class Premade implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            frame.dispose();
             if (e.getSource() == armbutton) {
                 this.program = armprogram;
             } else if (e.getSource() == legbutton) {
