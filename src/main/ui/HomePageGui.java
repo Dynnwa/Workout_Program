@@ -52,7 +52,7 @@ public class HomePageGui implements ActionListener {
         initButtons();
         initTextfield();
         initFrame();
-        clickHomepage(); // Method that actually does stuff
+        clickHomepage();
     }
 
     public void clickHomepage() {
@@ -76,6 +76,10 @@ public class HomePageGui implements ActionListener {
         } catch (LineUnavailableException lineUnavailableException) {
             lineUnavailableException.printStackTrace();
         }
+        performTask(e);
+    }
+
+    public void performTask(ActionEvent e) {
         if (e.getSource() == addbutton) {
             add(this.program);
         } else if (e.getSource() == removebutton) {
@@ -104,7 +108,14 @@ public class HomePageGui implements ActionListener {
     private void done() {
         String muscle = muscletext.getText();
         exerciseslabel.setText(this.program.printExerciseforMuscle(muscle).toString());
-        arm.setVisible(true);
+        if (muscle == "bicep" || muscle == "tricep") {
+            arm.setVisible(true);
+        } else if (muscle == "quad" || muscle == "hanstring") {
+            leg.setVisible(true);
+        } else if (muscle == "abs") {
+            abs.setVisible(true);
+        }
+
 
     }
 
@@ -162,13 +173,27 @@ public class HomePageGui implements ActionListener {
     }
 
     public void initImageLabels() {
-        arm.setBounds(100,300,200,15);
+        arm.setBounds(100,300,300,300);
         arm.setFont(new Font("Verdana",Font.PLAIN,15));
         arm.setBorder(BorderFactory.createBevelBorder(3));
         arm.setOpaque(true);
         arm.setVisible(false);
         arm.setHorizontalAlignment(JTextField.CENTER);
         arm.setIcon(new ImageIcon("./data/Arm.jpeg"));
+        abs.setBounds(100,300,300,300);
+        abs.setFont(new Font("Verdana",Font.PLAIN,15));
+        abs.setBorder(BorderFactory.createBevelBorder(3));
+        abs.setOpaque(true);
+        abs.setVisible(false);
+        abs.setHorizontalAlignment(JTextField.CENTER);
+        abs.setIcon(new ImageIcon("./data/Abs.jpeg"));
+        leg.setBounds(100,300,300,300);
+        leg.setFont(new Font("Verdana",Font.PLAIN,15));
+        leg.setBorder(BorderFactory.createBevelBorder(3));
+        leg.setOpaque(true);
+        leg.setVisible(false);
+        leg.setHorizontalAlignment(JTextField.CENTER);
+        leg.setIcon(new ImageIcon("./data/Leg.png"));
     }
 
     public void initLabel() {

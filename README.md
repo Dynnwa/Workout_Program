@@ -23,8 +23,6 @@ on my wants
 program
 - I want to be able to, remove exercises from a workout 
 program
-- I want to be able to, adjust the reps and sets of
-a program
 - I want to be able to, see all possible exercises for
 a muscle group
 - I want to be able to, swap out exercises for an alternative

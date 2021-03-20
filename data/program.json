@@ -1,1 +1,18 @@
-{"Exercises": []}
+{"Exercises": [
+    {
+        "Ismachine": false,
+        "reps": 3,
+        "sets": 3,
+        "muscle": "hamstring",
+        "alternative": "Cable dl",
+        "exercise": "Deadlift"
+    },
+    {
+        "Ismachine": false,
+        "reps": 8,
+        "sets": 4,
+        "muscle": "quad",
+        "alternative": "Hack squat",
+        "exercise": "Barbell squat"
+    }
+]}
