@@ -18,6 +18,7 @@ public class Swap implements ActionListener {
     private JTextField text;
     private Program program;
 
+    // Wdinow that allows user to select which exercise they would want to swap out for an alternative
     public Swap(Program p) {
         this.program = p;
         initFields();
@@ -27,6 +28,8 @@ public class Swap implements ActionListener {
         donebutton.addActionListener(this::actionPerformed);
     }
 
+    // Modifies: this
+    // Effects: initializes the buttons
     public void initButton() {
         donebutton.setBounds(150,200,100,25);
         donebutton.setFont(new Font("Ink Free",Font.PLAIN,10));
@@ -34,10 +37,14 @@ public class Swap implements ActionListener {
         donebutton.addActionListener((ActionListener) this);
     }
 
+    // Modifies: this
+    // Effects: initializes teh labels
     public void initLabel() {
         exerciselabel = createNewlabel("Exercise", 10);
     }
 
+    // Modifies: this
+    // Effects: creates a new label with text at ypos
     public JLabel createNewlabel(String text, int ypos) {
         JLabel label = new JLabel();
         label.setBounds(100,ypos,200,100);
@@ -49,6 +56,8 @@ public class Swap implements ActionListener {
         return label;
     }
 
+    // Modifies: this
+    // Effects: initializes the frame
     public void initFrame() {
         frame.add(exerciselabel);
         frame.add(donebutton);
@@ -59,6 +68,8 @@ public class Swap implements ActionListener {
         frame.setVisible(true);
     }
 
+    // Modifies: this
+    // Effects: initializes the fields
     public void initFields() {
         frame = new JFrame();
         exerciselabel = new JLabel();
@@ -67,6 +78,7 @@ public class Swap implements ActionListener {
         text.setBounds(100, 125, 200, 35);
     }
 
+    // Effects: when the done button is clicked the exercise will be swapped to the alternative exercise
     @Override
     public void actionPerformed(ActionEvent e) {
         frame.dispose();

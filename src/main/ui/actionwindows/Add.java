@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
+// Window for user to add exercises. has 5 text fields: exercise, muscle, alternative, sets and reps
 public class Add implements ActionListener {
     private JFrame frame;
     private JLabel exerciselabel;
@@ -25,6 +26,7 @@ public class Add implements ActionListener {
     private JTextField repstext;
     private Program program;
 
+    // Constructor
     public Add(Program p) {
         this.program = p;
         initFields();
@@ -34,6 +36,8 @@ public class Add implements ActionListener {
         donebutton.addActionListener(this::actionPerformed);
     }
 
+    // Modifies: this
+    // Effects: creates the done button
     public void initButton() {
         donebutton.setBounds(160,300,100,25);
         donebutton.setFont(new Font("Ink Free",Font.PLAIN,10));
@@ -41,6 +45,8 @@ public class Add implements ActionListener {
         donebutton.addActionListener((ActionListener) this);
     }
 
+    // Modifies: this
+    // Effects: creates all the labels for the textfields
     public void initLabel() {
         exerciselabel = createNewlabel("Exercise", 5);
         musclelabel = createNewlabel("Muscle", 65);
@@ -49,6 +55,8 @@ public class Add implements ActionListener {
         repslabel = createNewlabel("Reps", 245);
     }
 
+    // Modifies: this
+    // Effects: returns a label with text and positioned at ypos
     public JLabel createNewlabel(String text, int ypos) {
         JLabel label = new JLabel();
         label.setBounds(160,ypos,100,15);
@@ -60,6 +68,8 @@ public class Add implements ActionListener {
         return label;
     }
 
+    // Modifies this
+    // Effects: creates the frame
     public void initFrame() {
         frame.add(exerciselabel);
         frame.add(musclelabel);
@@ -78,12 +88,16 @@ public class Add implements ActionListener {
         frame.setVisible(true);
     }
 
+    // Modifies: this
+    // Effects: creates a textfield at y pos
     public JTextField createText(int ypos) {
         JTextField text = new JTextField();
         text.setBounds(100,ypos,200,15);
         return text;
     }
 
+    // Modifies: this
+    // Effects: initializes all the fields
     public void initFields() {
         frame = new JFrame();
         exerciselabel = new JLabel();
@@ -99,6 +113,7 @@ public class Add implements ActionListener {
         repstext = createText(270);
     }
 
+    // Effects: creates a new homepage app with the new exercises added to the program
     @Override
     public void actionPerformed(ActionEvent e) {
         frame.dispose();
@@ -117,6 +132,6 @@ public class Add implements ActionListener {
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         }
-
     }
+
 }

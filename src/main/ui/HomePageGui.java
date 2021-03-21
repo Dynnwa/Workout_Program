@@ -16,6 +16,7 @@ import java.io.IOException;
 import javax.sound.sampled.*;
 import javax.swing.*;
 
+// Window that acts as teh homepage for the workout program application
 public class HomePageGui implements ActionListener {
     private static final String JSON_FILE = "./data/program.json";
     private static final int framewidth = 420;
@@ -42,19 +43,18 @@ public class HomePageGui implements ActionListener {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-
-
+    // Constructor
     public HomePageGui(Program p) throws FileNotFoundException {
         this.program = p;
         initFields();
         initLabel();
-        initImageLabels();
         initButtons();
         initTextfield();
         initFrame();
         clickHomepage();
     }
 
+    // Effects: assigns an action listener to each button on the page
     public void clickHomepage() {
         addbutton.addActionListener(this);
         removebutton.addActionListener(this);
@@ -65,6 +65,7 @@ public class HomePageGui implements ActionListener {
         done.addActionListener(this);
     }
 
+    // Effects: will play a click sound when a button is pressed aswell as perform the action tied to a button
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
@@ -79,6 +80,7 @@ public class HomePageGui implements ActionListener {
         performTask(e);
     }
 
+    // Effects: will execute mthods based on which button was pressed
     public void performTask(ActionEvent e) {
         if (e.getSource() == addbutton) {
             add(this.program);
@@ -97,6 +99,7 @@ public class HomePageGui implements ActionListener {
         }
     }
 
+    // Effects: plays button1.wav
     public void playSound() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         File file = new File("./data/button1.wav");
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
@@ -105,6 +108,7 @@ public class HomePageGui implements ActionListener {
         clip.start();
     }
 
+    // Effects: creates a new done window
     private void done() {
         String muscle = muscletext.getText();
         exerciseslabel.setText(this.program.printExerciseforMuscle(muscle).toString());
@@ -119,24 +123,28 @@ public class HomePageGui implements ActionListener {
 
     }
 
+    // Effects: creates a new add window
     public void add(Program p) {
         frame.dispose();
         Add addwindow = new Add(p);
         frame.dispose();
     }
 
+    // Effects: creates a new remove window
     public void remove(Program p) {
         frame.dispose();
         Remove removewindow = new Remove(p);
         frame.dispose();
     }
 
+    // Effects: creates a new premade window
     public void premade(Program p) {
         frame.dispose();
         Premade premadewindow = new Premade(p);
         frame.dispose();
     }
 
+    // Effects: creates a new swap window
     public void swap(Program p) {
         frame.dispose();
         Swap swapwindow = new Swap(p);
@@ -168,34 +176,14 @@ public class HomePageGui implements ActionListener {
         }
     }
 
+    // Modifies: this
+    // Effects: initializes teh textfield
     private void initTextfield() {
         muscletext.setBounds(100,175,150,15);
     }
 
-    public void initImageLabels() {
-        arm.setBounds(100,300,300,300);
-        arm.setFont(new Font("Verdana",Font.PLAIN,15));
-        arm.setBorder(BorderFactory.createBevelBorder(3));
-        arm.setOpaque(true);
-        arm.setVisible(false);
-        arm.setHorizontalAlignment(JTextField.CENTER);
-        arm.setIcon(new ImageIcon("./data/Arm.jpeg"));
-        abs.setBounds(100,300,300,300);
-        abs.setFont(new Font("Verdana",Font.PLAIN,15));
-        abs.setBorder(BorderFactory.createBevelBorder(3));
-        abs.setOpaque(true);
-        abs.setVisible(false);
-        abs.setHorizontalAlignment(JTextField.CENTER);
-        abs.setIcon(new ImageIcon("./data/Abs.jpeg"));
-        leg.setBounds(100,300,300,300);
-        leg.setFont(new Font("Verdana",Font.PLAIN,15));
-        leg.setBorder(BorderFactory.createBevelBorder(3));
-        leg.setOpaque(true);
-        leg.setVisible(false);
-        leg.setHorizontalAlignment(JTextField.CENTER);
-        leg.setIcon(new ImageIcon("./data/Leg.png"));
-    }
-
+    // Modifies: this
+    // Effects: initializes teh label
     public void initLabel() {
         title.setBounds(100,10,200,15);
         title.setFont(new Font("Verdana",Font.PLAIN,15));
@@ -222,6 +210,8 @@ public class HomePageGui implements ActionListener {
         exerciseslabel.setHorizontalAlignment(JTextField.CENTER);
     }
 
+    // Modifies: this
+    // Effects: initializes the fields
     public void initFields() {
         frame = new JFrame();
         preMadebutton = new JButton("PRE-MADE");
@@ -244,6 +234,8 @@ public class HomePageGui implements ActionListener {
         jsonReader = new JsonReader(JSON_FILE);
     }
 
+    // Modifies: this
+    // Effects: initializes the buttons
     public void initButtons() {
         initButton(preMadebutton,buttonxdist, 25);
         initButton(addbutton,buttonxdist,50);
@@ -257,6 +249,8 @@ public class HomePageGui implements ActionListener {
         done.addActionListener((ActionListener) this);
     }
 
+    // Modifies: this
+    // Effects: takes a button and assignes it to xpos and ypos
     public void initButton(JButton jb, int xpos, int ypos) {
         jb.setBounds(xpos,ypos,75,25);
         jb.setFont(new Font("Ink Free",Font.PLAIN,10));
@@ -264,6 +258,9 @@ public class HomePageGui implements ActionListener {
         jb.addActionListener((ActionListener) this);
     }
 
+
+    // Modifies: this
+    // Effects: initializes the frame
     public void initFrame() {
         frame.add(preMadebutton);
         frame.add(addbutton);

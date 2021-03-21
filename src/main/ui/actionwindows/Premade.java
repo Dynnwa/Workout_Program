@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
+// Window for the user to select a program that contains exercises for the targetted muscle
 public class Premade implements ActionListener {
     private JFrame frame;
     private JLabel questionlabel;
@@ -21,6 +22,7 @@ public class Premade implements ActionListener {
     private Program legprogram;
     private Program abprogram;
 
+    // Constuctor
     public Premade(Program p) {
         this.program = p;
         initFields();
@@ -33,6 +35,8 @@ public class Premade implements ActionListener {
         abbutton.addActionListener(this::actionPerformed);
     }
 
+    // MOdifies: this
+    // Effects: creates buttons
     public void initButton() {
         armbutton.setBounds(150,200,100,25);
         armbutton.setFont(new Font("Ink Free",Font.PLAIN,10));
@@ -50,10 +54,14 @@ public class Premade implements ActionListener {
         abbutton.addActionListener((ActionListener) this);
     }
 
+    // Modifes: this
+    // Effects: creates labels
     public void initLabel() {
         questionlabel = createNewlabel("Which muscle?", 20);
     }
 
+    // Modifies: this
+    // Effects: creates a new label with text at ypos
     public JLabel createNewlabel(String text, int ypos) {
         JLabel label = new JLabel();
         label.setBounds(100,ypos,200,100);
@@ -65,6 +73,8 @@ public class Premade implements ActionListener {
         return label;
     }
 
+    // Modifies: this
+    // Effects: creates a frame
     public void initFrame() {
         frame.add(questionlabel);
         frame.add(abbutton);
@@ -76,6 +86,8 @@ public class Premade implements ActionListener {
         frame.setVisible(true);
     }
 
+    // Modifies: this
+    // Effects: initializes the fields
     public void initFields() {
         frame = new JFrame();
         questionlabel = new JLabel();
@@ -84,6 +96,8 @@ public class Premade implements ActionListener {
         abbutton = new JButton("Abs");
     }
 
+    // Modifies: this
+    // Effects: creates all teh exercises that will go into programs
     public void initProgram() {
         Exercise extension = new Exercise("Skullcrusher", "Press down", "tricep",
                 3, 8, false);
@@ -111,6 +125,7 @@ public class Premade implements ActionListener {
         abprogram.addExercise(abs);
     }
 
+    // Effects: creates a new homepage with a pragam updated with the user selected muscle focus
     @Override
     public void actionPerformed(ActionEvent e) {
         try {

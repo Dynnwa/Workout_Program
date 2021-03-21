@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
+// Window that contains a textfield, a label and a done button that lets the user remove a given exercise
 public class Remove implements ActionListener {
     private JFrame frame;
     private JLabel exerciselabel;
@@ -17,6 +18,7 @@ public class Remove implements ActionListener {
     private JTextField text;
     private Program program;
 
+    // Constructor
     public Remove(Program p) {
         this.program = p;
         initFields();
@@ -26,10 +28,8 @@ public class Remove implements ActionListener {
         donebutton.addActionListener(this::actionPerformed);
     }
 
-    public Program getProgram() {
-        return this.program;
-    }
-
+    // Modifies: this
+    // Effects: intitializes the button
     public void initButton() {
         donebutton.setBounds(150,200,100,25);
         donebutton.setFont(new Font("Ink Free",Font.PLAIN,10));
@@ -37,10 +37,14 @@ public class Remove implements ActionListener {
         donebutton.addActionListener((ActionListener) this);
     }
 
+    // Modifies: this
+    // Effects: initializes the label
     public void initLabel() {
         exerciselabel = createNewlabel("Exercise", 10);
     }
 
+    // Modifies: this
+    // Effects: creates a label with text at y pos
     public JLabel createNewlabel(String text, int ypos) {
         JLabel label = new JLabel();
         label.setBounds(100,ypos,200,100);
@@ -52,6 +56,8 @@ public class Remove implements ActionListener {
         return label;
     }
 
+    // Modifies: this
+    // Effects: initializes the frame
     public void initFrame() {
         frame.add(exerciselabel);
         frame.add(donebutton);
@@ -62,6 +68,8 @@ public class Remove implements ActionListener {
         frame.setVisible(true);
     }
 
+    // Modifies: this
+    // Effects: initializes the fields
     public void initFields() {
         frame = new JFrame();
         exerciselabel = new JLabel();
@@ -70,6 +78,7 @@ public class Remove implements ActionListener {
         text.setBounds(100, 125, 200, 35);
     }
 
+    // Effects: when done button is clicked then the window will close and the exercise will be removed form the program
     @Override
     public void actionPerformed(ActionEvent e) {
         frame.dispose();
