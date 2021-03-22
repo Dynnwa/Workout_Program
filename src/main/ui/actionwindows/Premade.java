@@ -38,20 +38,17 @@ public class Premade implements ActionListener {
     // MOdifies: this
     // Effects: creates buttons
     public void initButton() {
-        armbutton.setBounds(150,200,100,25);
-        armbutton.setFont(new Font("Ink Free",Font.PLAIN,10));
-        armbutton.setFocusable(false);
-        armbutton.addActionListener((ActionListener) this);
+        setButton(armbutton, 200);
+        setButton(legbutton, 250);
+        setButton(abbutton, 300);
+    }
 
-        legbutton.setBounds(150,250,100,25);
-        legbutton.setFont(new Font("Ink Free",Font.PLAIN,10));
-        legbutton.setFocusable(false);
-        legbutton.addActionListener((ActionListener) this);
-
-        abbutton.setBounds(150,300,100,25);
-        abbutton.setFont(new Font("Ink Free",Font.PLAIN,10));
-        abbutton.setFocusable(false);
-        abbutton.addActionListener((ActionListener) this);
+    // Effects: changes button to be at ypos
+    private void setButton(JButton button, int ypos) {
+        button.setBounds(150, ypos, 100, 25);
+        button.setFont(new Font("Ink Free", Font.PLAIN, 10));
+        button.setFocusable(false);
+        button.addActionListener((ActionListener) this);
     }
 
     // Modifes: this
@@ -125,24 +122,27 @@ public class Premade implements ActionListener {
         abprogram.addExercise(abs);
     }
 
-    // Effects: creates a new homepage with a pragam updated with the user selected muscle focus
+    // Effects: creates a new homepage with a program updated with the user selected muscle focus
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             frame.dispose();
-            if (e.getSource() == armbutton) {
-                this.program = armprogram;
-            } else if (e.getSource() == legbutton) {
-                this.program = legprogram;
-            } else if (e.getSource() == abbutton) {
-                this.program = abprogram;
-            }
-            frame.dispose();
+            whichButton(e);
             new HomePageGui(this.program);
-            frame.dispose();
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         }
 
+    }
+
+    // Effects: performs the action of whichever button the user pressed
+    private void whichButton(ActionEvent e) {
+        if (e.getSource() == armbutton) {
+            this.program = armprogram;
+        } else if (e.getSource() == legbutton) {
+            this.program = legprogram;
+        } else if (e.getSource() == abbutton) {
+            this.program = abprogram;
+        }
     }
 }

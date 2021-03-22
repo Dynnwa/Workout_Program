@@ -36,9 +36,6 @@ public class HomePageGui implements ActionListener {
     private JLabel programlabel;
     private JLabel musclelabel;
     private JLabel exerciseslabel;
-    private JLabel arm;
-    private JLabel abs;
-    private JLabel leg;
     private Program program;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -112,15 +109,7 @@ public class HomePageGui implements ActionListener {
     private void done() {
         String muscle = muscletext.getText();
         exerciseslabel.setText(this.program.printExerciseforMuscle(muscle).toString());
-        if (muscle == "bicep" || muscle == "tricep") {
-            arm.setVisible(true);
-        } else if (muscle == "quad" || muscle == "hanstring") {
-            leg.setVisible(true);
-        } else if (muscle == "abs") {
-            abs.setVisible(true);
-        }
-
-
+        exerciseslabel.setVisible(true);
     }
 
     // Effects: creates a new add window
@@ -179,35 +168,28 @@ public class HomePageGui implements ActionListener {
     // Modifies: this
     // Effects: initializes teh textfield
     private void initTextfield() {
-        muscletext.setBounds(100,175,150,15);
+        muscletext.setBounds(125,225,150,15);
     }
 
     // Modifies: this
     // Effects: initializes teh label
     public void initLabel() {
-        title.setBounds(100,10,200,15);
-        title.setFont(new Font("Verdana",Font.PLAIN,15));
+        setLabel(title, 100, 10, 200, 15, "Your Current Program");
+        setLabel(programlabel, 100, 50, 200, 10, program.printExercises().toString());
+        setLabel(musclelabel, 50, 200, 300, 10, "Enter Muscle to show exercises for that muscle");
+        setLabel(exerciseslabel, 75,275,200,10,"");
+        exerciseslabel.setVisible(false);
+    }
+
+    // Modifies: this
+    // Effects: Changes the label to x,y positions with width and font size
+    private void setLabel(JLabel title, int x, int y, int width, int font, String text) {
+        title.setBounds(x, y, width, 15);
+        title.setFont(new Font("Verdana", Font.PLAIN, font));
         title.setBorder(BorderFactory.createBevelBorder(3));
         title.setOpaque(true);
         title.setHorizontalAlignment(JTextField.CENTER);
-        title.setText("Your Current Program");
-        programlabel.setBounds(100,50,200,15);
-        programlabel.setFont(new Font("Verdana",Font.PLAIN,10));
-        programlabel.setBorder(BorderFactory.createBevelBorder(3));
-        programlabel.setOpaque(true);
-        programlabel.setHorizontalAlignment(JTextField.CENTER);
-        programlabel.setText(program.printExercises().toString());
-        musclelabel.setBounds(90,150,300,15);
-        musclelabel.setFont(new Font("Verdana",Font.PLAIN,10));
-        musclelabel.setBorder(BorderFactory.createBevelBorder(3));
-        musclelabel.setOpaque(true);
-        musclelabel.setHorizontalAlignment(JTextField.CENTER);
-        musclelabel.setText("Enter Muscle to show exercises for that muscle");
-        exerciseslabel.setBounds(10,275,200,15);
-        exerciseslabel.setFont(new Font("Verdana",Font.PLAIN,10));
-        exerciseslabel.setBorder(BorderFactory.createBevelBorder(3));
-        exerciseslabel.setOpaque(true);
-        exerciseslabel.setHorizontalAlignment(JTextField.CENTER);
+        title.setText(text);
     }
 
     // Modifies: this
@@ -225,9 +207,6 @@ public class HomePageGui implements ActionListener {
         programlabel = new JLabel();
         musclelabel = new JLabel();
         exerciseslabel = new JLabel();
-        arm = new JLabel();
-        abs = new JLabel();
-        leg = new JLabel();
         muscletext = new JTextField();
         done = new JButton("Done");
         jsonWriter = new JsonWriter(JSON_FILE);
@@ -237,27 +216,23 @@ public class HomePageGui implements ActionListener {
     // Modifies: this
     // Effects: initializes the buttons
     public void initButtons() {
-        initButton(preMadebutton,buttonxdist, 25);
-        initButton(addbutton,buttonxdist,50);
-        initButton(removebutton,buttonxdist,75);
-        initButton(swapbutton,buttonxdist,100);
-        initButton(savebutton,buttonxdist,125);
-        initButton(loadbutton,buttonxdist,150);
-        done.setBounds(100,250,75,25);
-        done.setFont(new Font("Ink Free",Font.PLAIN,10));
-        done.setFocusable(false);
-        done.addActionListener((ActionListener) this);
+        setButton(preMadebutton,buttonxdist, 25);
+        setButton(addbutton,buttonxdist,50);
+        setButton(removebutton,buttonxdist,75);
+        setButton(swapbutton,buttonxdist,100);
+        setButton(savebutton,buttonxdist,125);
+        setButton(loadbutton,buttonxdist,150);
+        setButton(done,160,245);
     }
 
     // Modifies: this
     // Effects: takes a button and assignes it to xpos and ypos
-    public void initButton(JButton jb, int xpos, int ypos) {
+    public void setButton(JButton jb, int xpos, int ypos) {
         jb.setBounds(xpos,ypos,75,25);
         jb.setFont(new Font("Ink Free",Font.PLAIN,10));
         jb.setFocusable(false);
         jb.addActionListener((ActionListener) this);
     }
-
 
     // Modifies: this
     // Effects: initializes the frame
@@ -275,9 +250,6 @@ public class HomePageGui implements ActionListener {
         frame.add(exerciseslabel);
         frame.add(done);
         frame.add(muscletext);
-        frame.add(arm);
-        frame.add(abs);
-        frame.add(leg);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(framewidth,framelength);
         frame.setLayout(null);
