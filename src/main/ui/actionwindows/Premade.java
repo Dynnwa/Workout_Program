@@ -48,7 +48,6 @@ public class Premade implements ActionListener {
         button.setBounds(150, ypos, 100, 25);
         button.setFont(new Font("Ink Free", Font.PLAIN, 10));
         button.setFocusable(false);
-        button.addActionListener((ActionListener) this);
     }
 
     // Modifes: this

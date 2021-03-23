@@ -79,6 +79,8 @@ public class HomePageGui implements ActionListener {
 
     // Effects: will execute mthods based on which button was pressed
     public void performTask(ActionEvent e) {
+        System.out.println("Count of listeners: " + ((JButton) e.getSource()).getActionListeners().toString());
+        System.out.println(e.getClass());
         if (e.getSource() == addbutton) {
             add(this.program);
         } else if (e.getSource() == removebutton) {
@@ -157,6 +159,7 @@ public class HomePageGui implements ActionListener {
     // MODELLED AFTER THE JSON PROJECT
     private void loadProgram(Program p) {
         try {
+            frame.dispose();
             p = jsonReader.read();
             System.out.println("Loaded program from " + JSON_FILE);
             new HomePageGui(p);
@@ -231,7 +234,6 @@ public class HomePageGui implements ActionListener {
         jb.setBounds(xpos,ypos,75,25);
         jb.setFont(new Font("Ink Free",Font.PLAIN,10));
         jb.setFocusable(false);
-        jb.addActionListener((ActionListener) this);
     }
 
     // Modifies: this

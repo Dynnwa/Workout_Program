@@ -34,7 +34,6 @@ public class Swap implements ActionListener {
         donebutton.setBounds(150,200,100,25);
         donebutton.setFont(new Font("Ink Free",Font.PLAIN,10));
         donebutton.setFocusable(false);
-        donebutton.addActionListener((ActionListener) this);
     }
 
     // Modifies: this
