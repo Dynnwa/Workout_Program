@@ -1,6 +1,5 @@
 package persistence;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import model.Exercise;
 import model.Program;
 import org.json.JSONArray;

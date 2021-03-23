@@ -1,8 +1,6 @@
 package ui.actionwindows;
 
-import com.sun.tools.internal.xjc.model.CPropertyInfo;
 import model.Program;
-import sun.jvm.hotspot.types.JBooleanField;
 import ui.HomePageGui;
 
 import javax.swing.*;
