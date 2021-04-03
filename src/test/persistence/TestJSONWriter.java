@@ -24,7 +24,7 @@ public class TestJSONWriter extends TestCheckExercise {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyProgram() {
         try {
             Program program = new Program();
             JsonWriter writer = new JsonWriter("./data/emptyProgram.json");
@@ -41,7 +41,7 @@ public class TestJSONWriter extends TestCheckExercise {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralProgram() {
         try {
             Exercise  curls1 = new Exercise("Dumbell curl", "Cable curl", "bicep",
                     3,8,false);
@@ -59,9 +59,9 @@ public class TestJSONWriter extends TestCheckExercise {
             program = reader.read();
             assertEquals(2, program.programLength());
             correctExercise("Dumbell curl", "Cable curl","bicep",
-                    3,8,false, program.getExercise(0));
+                    3,8,false, program.getProgram().get("bicep").get(0));
             correctExercise("Barbell curl", "Band curl","bicep",
-                    4,10,false, program.getExercise(1));
+                    4,10,false, program.getProgram().get("bicep").get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

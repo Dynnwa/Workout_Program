@@ -39,9 +39,9 @@ public class TestJSONReader extends TestCheckExercise {
             Program program = reader.read();
             assertEquals(2, program.programLength());
             correctExercise("Dumbell curl", "Cable curl", "bicep",
-                    3, 8, false, program.getExercise(0));
+                    3, 8, false, program.getProgram().get("bicep").get(0));
             correctExercise("Barbell curl", "Band curl", "bicep",
-                    4, 10, false, program.getExercise(1));
+                    4, 10, false, program.getProgram().get("bicep").get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

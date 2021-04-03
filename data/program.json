@@ -1,18 +1,28 @@
-{"Exercises": [
-    {
+{
+    "gw": [{
         "Ismachine": false,
-        "reps": 3,
-        "sets": 3,
-        "muscle": "hamstring",
-        "alternative": "Cable dl",
-        "exercise": "Deadlift"
-    },
-    {
-        "Ismachine": false,
-        "reps": 8,
-        "sets": 4,
-        "muscle": "quad",
-        "alternative": "Hack squat",
-        "exercise": "Barbell squat"
-    }
-]}
+        "reps": 7,
+        "sets": 6,
+        "muscle": "gw",
+        "alternative": "wer",
+        "exercise": "kajnsdjkndsjnds"
+    }],
+    "sadf": [
+        {
+            "Ismachine": false,
+            "reps": 5,
+            "sets": 45,
+            "muscle": "sadf",
+            "alternative": "sdf4",
+            "exercise": "sdfasdf"
+        },
+        {
+            "Ismachine": false,
+            "reps": 7,
+            "sets": 67,
+            "muscle": "sadf",
+            "alternative": "0qoiueroiwer",
+            "exercise": "owierio"
+        }
+    ]
+}

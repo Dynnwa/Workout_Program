@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
+// Window that contains a textfield, a label and a done button that lets the user swaps the given exercise
 public class Swap implements ActionListener {
     private JFrame frame;
     private JLabel exerciselabel;

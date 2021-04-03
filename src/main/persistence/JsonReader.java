@@ -49,10 +49,12 @@ public class JsonReader {
     // MODIFIES: p
     // EFFECTS: parses exercises from JSON object and adds them to program
     private void addExercises(Program p, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("Exercises");
-        for (Object json : jsonArray) {
-            JSONObject nextExercise = (JSONObject) json;
-            addExercise(p, nextExercise);
+        for (String key : jsonObject.keySet()) {
+            JSONArray jsonArray = jsonObject.getJSONArray(key);
+            for (Object json : jsonArray) {
+                JSONObject nextExercise = (JSONObject) json;
+                addExercise(p, nextExercise);
+            }
         }
     }
 

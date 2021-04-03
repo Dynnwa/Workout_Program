@@ -60,22 +60,6 @@ public class Exercise implements Json {
 
     /*
     MODIFIES: this
-    EFFECTS: changes the reps of the exercise to newreps
-     */
-    public void changeReps(int newreps) {
-        this.reps = newreps;
-    }
-
-    /*
-    MODIFIES: this
-    EFFECTS: changes the sets of the exercise to newsets
-     */
-    public void changeSets(int newsets) {
-        this.sets = newsets;
-    }
-
-    /*
-    MODIFIES: this
     EFFECTS: changes the exercise to alternative and vis versa, also changes the machine to the opposite
      */
     public void swapOut() {
@@ -85,7 +69,7 @@ public class Exercise implements Json {
         this.ismachine = !this.ismachine;
     }
 
-    // EFECTS: changes an exercise to a JSONObject, modelled after the demo
+    // EFFECTS: changes an exercise to a JSONObject, modelled after the demo
     @Override
     public JSONObject toJson() {
         JSONObject jsoneercise = new JSONObject();

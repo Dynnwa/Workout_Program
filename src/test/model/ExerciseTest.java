@@ -47,22 +47,6 @@ class ExerciseTest {
     }
 
     @Test
-    public void testchangeReps() {
-        curls1.changeReps(8);
-        assertEquals(8, curls1.getReps());
-        curls1.changeReps(10);
-        assertEquals(10, curls1.getReps());
-    }
-
-    @Test
-    public void testChangeSets() {
-        curls1.changeSets(3);
-        assertEquals(3, curls1.getSets());
-        curls1.changeSets(5);
-        assertEquals(5, curls1.getSets());
-    }
-
-    @Test
     public void testSwapout() {
         curls1.swapOut();
         assertEquals("Cable curl", curls1.getExercise());

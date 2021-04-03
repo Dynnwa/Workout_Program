@@ -46,17 +46,6 @@ public class ProgramTest {
     }
 
     @Test
-    public void testgetExercise() {
-        Program program = new Program();
-
-        program.addExercise(curls1);
-        program.addExercise(curls2);
-
-        assertEquals(curls1, program.getExercise(0));
-        assertEquals(curls2, program.getExercise(1));
-    }
-
-    @Test
     public void testaddExercise() {
         program.addExercise(curls1);
 
@@ -66,12 +55,12 @@ public class ProgramTest {
         program.addExercise(curls1);
 
         assertTrue(program.containsExercise(curls1));
-        assertTrue(1 == program.programLength());
+        assertTrue(2 == program.programLength());
 
         program.addExercise(curls2);
 
         assertTrue(program.containsExercise(curls2));
-        assertTrue(2 == program.programLength());
+        assertTrue(3 == program.programLength());
     }
 
     @Test
@@ -90,6 +79,7 @@ public class ProgramTest {
         assertTrue(1 == program.programLength());
     }
 
+    /*
     @Test
     public void testcalculateVolumeEmpty() {
         assertEquals(0, program.volumeFormuscle("biceps"));
@@ -118,6 +108,7 @@ public class ProgramTest {
                 + squat2.getSets() * squat2.getReps(), program.volumeFormuscle("quad"));
         assertEquals(abs.getReps() * abs.getSets(), program.volumeFormuscle("abs"));
     }
+     */
 
     @Test
     public void testprintMuscle() {
@@ -204,46 +195,23 @@ public class ProgramTest {
         exercises1.add("Dumbell squat");
         program.switchExercise("Leg press");
         assertEquals(exercises1, program.printExercises());
-
-
-    }
-
-    @Test
-    public void testchangeSets() {
-        assertEquals(4, curls2.getSets());
-
-        program.addExercise(curls2); // 4
-        program.addExercise(squat1);
-        program.changeSets(7, "Barbell curl");
-        program.changeSets(0, "Dumbell curl");
-
-        assertEquals(7, curls2.getSets());
-    }
-
-    @Test
-    public void testchangeReps() {
-        assertEquals(10, curls2.getReps());
-
-        program.addExercise(curls2); // 10
-        program.addExercise(squat1);
-        program.changeReps(6, "Barbell curl");
-        program.changeReps(0, "Dumbell curl");
-
-        assertEquals(6, curls2.getReps());
     }
 
     @Test
     public void testToJSON() {
         program.addExercise(curls1);
-        assertEquals(program.changetoJsonArray().toString(),program.toJson().getJSONArray("Exercises").toString());
+        assertEquals(program.changetoJsonArray(program.getProgram().get("bicep")).toString()
+                ,program.toJson().getJSONArray("bicep").toString());
     }
 
     @Test
     public void testToJSONArray() {
         program.addExercise(curls1);
+        assertEquals(curls1.toJson().toString()
+                ,program.changetoJsonArray(program.getProgram().get("bicep")).get(0).toString());
         program.addExercise(curls2);
-        assertEquals(curls1.toJson().toString(),program.changetoJsonArray().get(0).toString());
-        assertEquals(curls2.toJson().toString(),program.changetoJsonArray().get(1).toString());
+        assertEquals(curls2.toJson().toString()
+                ,program.changetoJsonArray(program.getProgram().get("bicep")).get(1).toString());
     }
 
 }
