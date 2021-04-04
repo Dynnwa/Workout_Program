@@ -28,3 +28,7 @@ a muscle group
 - I want to be able to, swap out exercises for an alternative
 - I want to be able to, save my current workout program if I like it
 - I want to be able to, I want to load a previous program that I had
+
+Phase 4 Task 2: inplemented a map interface with my program. The keys for
+the map are muscle gorups and the items are lists of Exercises that train 
+that muscle gorup.
