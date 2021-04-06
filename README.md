@@ -32,3 +32,7 @@ a muscle group
 Phase 4 Task 2: inplemented a map interface with my program. The keys for
 the map are muscle gorups and the items are lists of Exercises that train 
 that muscle gorup.
+
+Phase 4 Task 3: Now that I have actually finished my project, I would say a big thing for me
+to refactor would be adding more abstraction into my GUI classes. I added the
+UML to data.

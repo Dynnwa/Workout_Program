@@ -84,21 +84,6 @@ public class Program implements Json {
         return numexecises;
     }
 
-/*
-    // effects: calculates teh total amount of volume for a given muscle in the program
-    // this is sets*reps
-    public int volumeFormuscle(String muscle) {
-        int volume = 0;
-        for (int i = 0; i < this.programLength(); i++) {
-            if (program.get(i).getMuscle().equals(muscle)) {
-                volume = volume + (program.get(i).getReps() * program.get(i).getSets());
-            }
-            //return volume;
-        }
-        return volume;
-    }
- */
-
     // effects: prints a list of all the exercises in the prorgam that works the given muscle
     public List<String> printExerciseforMuscle(String muscle) {
         List<String> exercises = new ArrayList<>();
