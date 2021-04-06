@@ -56,13 +56,6 @@ public class Program implements Json {
             elist.remove(e);
         }
     }
-/*
-    // REQUIRES: must not exceed the length of the list
-    // EFFECTS: indexes a certain exercise
-    public Exercise getExercise(int index) {
-        return program.get(index);
-    }
- */
 
     // EFFECTS: Returns true if Exercise e is in the program
     // and false otherwise
