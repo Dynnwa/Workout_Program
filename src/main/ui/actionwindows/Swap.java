@@ -17,7 +17,7 @@ public class Swap implements ActionListener {
     private JTextField text;
     private Program program;
 
-    // Wdinow that allows user to select which exercise they would want to swap out for an alternative
+    // Wdinow that allows user to select which exercise they would want to swap out for an alternativesd
     public Swap(Program p) {
         this.program = p;
         initFields();
